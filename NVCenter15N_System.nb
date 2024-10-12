@@ -1,0 +1,3712 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    165791,       3704]
+NotebookOptionsPosition[    164428,       3676]
+NotebookOutlinePosition[    164821,       3692]
+CellTagsIndexPosition[    164778,       3689]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Parameter values for calculating probs of eigenvalues
+\
+\>", "Text",
+ CellChangeTimes->{{3.88363106998274*^9, 3.883631075247615*^9}, {
+  3.883632548412539*^9, 
+  3.883632603176014*^9}},ExpressionUUID->"2cc823a3-2665-41a8-a79d-\
+56b10e02c0ce"],
+
+Cell["Compute Spectrum:", "Text",
+ CellChangeTimes->{{3.883632577900182*^9, 3.883632619137765*^9}},
+ EmphasizeSyntaxErrors->
+  True,ExpressionUUID->"6b151494-555f-46e7-9332-1d5b1876edba"],
+
+Cell[BoxData[
+ RowBox[{"H", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"D", "+", 
+       RowBox[{"Bz", "*", 
+        RowBox[{"(", 
+         RowBox[{"\[Gamma]e", "-", "\[Gamma]n"}], ")"}]}], "+", "Aa"}], ",", 
+      "0", ",", "0", ",", "0", ",", 
+      RowBox[{
+       RowBox[{"-", "Ex"}], "*", "0.5"}], ",", "0"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", 
+      RowBox[{"D", "+", 
+       RowBox[{"Bz", "*", 
+        RowBox[{"(", 
+         RowBox[{"\[Gamma]e", "+", "\[Gamma]n"}], ")"}]}], "-", "Aa"}], ",", 
+      "At", ",", "0", ",", "0", ",", 
+      RowBox[{
+       RowBox[{"-", "Ex"}], "*", "0.5"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "Ap", ",", " ", 
+      RowBox[{
+       RowBox[{"-", "Bz"}], "*", "\[Gamma]n"}], ",", "0", ",", "0", ",", 
+      "0"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0", ",", "0", ",", " ", 
+      RowBox[{"Bz", "*", "\[Gamma]n"}], ",", "Ap", ",", "0"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "Ex"}], "*", "0.5"}], ",", "0", ",", "0", ",", " ", "Ap", 
+      ",", " ", 
+      RowBox[{"D", "-", 
+       RowBox[{"Bz", "*", 
+        RowBox[{"(", 
+         RowBox[{"\[Gamma]e", "+", "\[Gamma]n"}], ")"}]}], "-", "Aa"}], ",", 
+      "0"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{
+       RowBox[{"-", "Ex"}], "*", "0.5"}], ",", "0", ",", "0", ",", " ", "0", 
+      ",", " ", 
+      RowBox[{"D", "-", 
+       RowBox[{"Bz", "*", 
+        RowBox[{"(", 
+         RowBox[{"\[Gamma]e", "+", "\[Gamma]n"}], ")"}]}], "-", "Aa"}]}], 
+     "}"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.8836310878057013`*^9, 3.883631285321666*^9}, {
+  3.883631329882959*^9, 3.883631455386589*^9}, {3.883632357552307*^9, 
+  3.8836324540357924`*^9}, {3.883632497106152*^9, 3.8836325104436283`*^9}, {
+  3.8836326490145473`*^9, 3.8836326506545353`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"1d339442-ecf6-4d89-8091-abd921d11e48"],
+
+Cell[BoxData[
+ RowBox[{"$Assumptions", "=", 
+  RowBox[{"a", ">", "0"}]}]], "Input",
+ CellChangeTimes->{{3.8836443243916063`*^9, 
+  3.883644324405738*^9}},ExpressionUUID->"fa772ec2-3b3c-47b9-891a-\
+1c122b0b1636"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Input",ExpressionUUID->"4a4e6b9f-63e8-4447-a2ae-acb7596d2980"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Aa", "+", "D", "+", 
+      RowBox[{"Bz", " ", 
+       RowBox[{"(", 
+        RowBox[{"\[Gamma]e", "-", "\[Gamma]n"}], ")"}]}]}], ",", "0", ",", 
+     "0", ",", "0", ",", 
+     RowBox[{
+      RowBox[{"-", "0.5`"}], " ", "Ex"}], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{
+      RowBox[{"-", "Aa"}], "+", "D", "+", 
+      RowBox[{"Bz", " ", 
+       RowBox[{"(", 
+        RowBox[{"\[Gamma]e", "+", "\[Gamma]n"}], ")"}]}]}], ",", "At", ",", 
+     "0", ",", "0", ",", 
+     RowBox[{
+      RowBox[{"-", "0.5`"}], " ", "Ex"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "Ap", ",", 
+     RowBox[{
+      RowBox[{"-", "Bz"}], " ", "\[Gamma]n"}], ",", "0", ",", "0", ",", "0"}],
+     "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0", ",", 
+     RowBox[{"Bz", " ", "\[Gamma]n"}], ",", "Ap", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "0.5`"}], " ", "Ex"}], ",", "0", ",", "0", ",", "Ap", ",", 
+     
+     RowBox[{
+      RowBox[{"-", "Aa"}], "+", "D", "-", 
+      RowBox[{"Bz", " ", 
+       RowBox[{"(", 
+        RowBox[{"\[Gamma]e", "+", "\[Gamma]n"}], ")"}]}]}], ",", "0"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{
+      RowBox[{"-", "0.5`"}], " ", "Ex"}], ",", "0", ",", "0", ",", "0", ",", 
+     RowBox[{
+      RowBox[{"-", "Aa"}], "+", "D", "-", 
+      RowBox[{"Bz", " ", 
+       RowBox[{"(", 
+        RowBox[{"\[Gamma]e", "+", "\[Gamma]n"}], ")"}]}]}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.883632444066324*^9, 3.883632454701683*^9}, 
+   3.883632511975616*^9, 3.883632653502157*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"18e84d03-293c-47d4-9f56-730620bd7aa9"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"eigvals", " ", "=", " ", 
+    RowBox[{"FullSimplify", "[", 
+     RowBox[{
+      RowBox[{"Eigenvalues", "[", "H", "]"}], ",", 
+      RowBox[{"Assumptions", "->", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "\[Element]", "Reals"}], " ", "&&", " ", 
+          RowBox[{"D", ">", "0"}]}], ",", 
+         RowBox[{"Bz", "\[Element]", "Reals"}]}]}]}]}]}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eigvecs", " ", "=", " ", 
+   RowBox[{"Eigenvectors", "[", "H", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.883631055343142*^9, 3.883631057835034*^9}, {
+  3.883632635031818*^9, 3.883632636868885*^9}, {3.883632766843748*^9, 
+  3.8836328487665977`*^9}, {3.883633740974071*^9, 3.883633785332755*^9}, {
+  3.8836338155366983`*^9, 3.883633817074931*^9}, {3.883633887060817*^9, 
+  3.8836339409594193`*^9}, {3.8836441708125143`*^9, 
+  3.883644180790167*^9}},ExpressionUUID->"29111974-32f8-4afa-816b-\
+f1024788288c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetPrecision", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"eigvals", ",", "eigvecs"}], "}"}], ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.883633910081773*^9},ExpressionUUID->"862b3123-b61f-4872-8ffe-\
+dfad6ca9f567"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Aa", " ", 
+        SuperscriptBox["Ap", "2"]}], "+", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+       RowBox[{
+        SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"Bz", " ", 
+        SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"0.25`", " ", "Bz", " ", 
+        SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"2", " ", "Aa", " ", 
+        SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], "+", 
+       
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["Bz", "2"], " ", "D", " ", 
+        SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["Aa", "2"]}], "-", 
+          SuperscriptBox["Ap", "2"], "+", 
+          SuperscriptBox["D", "2"], "-", 
+          RowBox[{"0.25`", " ", 
+           SuperscriptBox["Ex", "2"]}], "-", 
+          RowBox[{"2", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "2"}], " ", "D"}], "+", 
+          RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+        SuperscriptBox["#1", "2"]}], "+", 
+       SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}], ",", 
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Aa", " ", 
+        SuperscriptBox["Ap", "2"]}], "+", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+       RowBox[{
+        SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"Bz", " ", 
+        SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"0.25`", " ", "Bz", " ", 
+        SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"2", " ", "Aa", " ", 
+        SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], "+", 
+       
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["Bz", "2"], " ", "D", " ", 
+        SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["Aa", "2"]}], "-", 
+          SuperscriptBox["Ap", "2"], "+", 
+          SuperscriptBox["D", "2"], "-", 
+          RowBox[{"0.25`", " ", 
+           SuperscriptBox["Ex", "2"]}], "-", 
+          RowBox[{"2", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "2"}], " ", "D"}], "+", 
+          RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+        SuperscriptBox["#1", "2"]}], "+", 
+       SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}], ",", 
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Aa", " ", 
+        SuperscriptBox["Ap", "2"]}], "+", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+       RowBox[{
+        SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{
+        SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"Bz", " ", 
+        SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"0.25`", " ", "Bz", " ", 
+        SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"2", " ", "Aa", " ", 
+        SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], "+", 
+       
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["Bz", "2"], " ", "D", " ", 
+        SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["Aa", "2"]}], "-", 
+          SuperscriptBox["Ap", "2"], "+", 
+          SuperscriptBox["D", "2"], "-", 
+          RowBox[{"0.25`", " ", 
+           SuperscriptBox["Ex", "2"]}], "-", 
+          RowBox[{"2", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "2"}], " ", "D"}], "+", 
+          RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+        SuperscriptBox["#1", "2"]}], "+", 
+       SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}], ",", 
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "Aa"}], " ", "Ap", " ", "At"}], "+", 
+       RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+       RowBox[{"Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+       RowBox[{
+        SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"2", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "+", 
+       RowBox[{"Bz", " ", 
+        SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{"0.25`", " ", "Bz", " ", 
+        SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+        SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], "-", 
+          RowBox[{"Ap", " ", "At"}], "-", 
+          RowBox[{"2", " ", "Aa", " ", "D"}], "+", 
+          SuperscriptBox["D", "2"], "-", 
+          RowBox[{"0.25`", " ", 
+           SuperscriptBox["Ex", "2"]}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+          RowBox[{"2", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"2", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+          "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"2", " ", "Aa"}], "-", 
+          RowBox[{"2", " ", "D"}], "+", 
+          RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+        SuperscriptBox["#1", "2"]}], "+", 
+       SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}], ",", 
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "Aa"}], " ", "Ap", " ", "At"}], "+", 
+       RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+       RowBox[{"Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+       RowBox[{
+        SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"2", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "+", 
+       RowBox[{"Bz", " ", 
+        SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{"0.25`", " ", "Bz", " ", 
+        SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+        SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], "-", 
+          RowBox[{"Ap", " ", "At"}], "-", 
+          RowBox[{"2", " ", "Aa", " ", "D"}], "+", 
+          SuperscriptBox["D", "2"], "-", 
+          RowBox[{"0.25`", " ", 
+           SuperscriptBox["Ex", "2"]}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+          RowBox[{"2", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"2", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+          "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"2", " ", "Aa"}], "-", 
+          RowBox[{"2", " ", "D"}], "+", 
+          RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+        SuperscriptBox["#1", "2"]}], "+", 
+       SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}], ",", 
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "Aa"}], " ", "Ap", " ", "At"}], "+", 
+       RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+       RowBox[{"Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+       RowBox[{
+        SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+       RowBox[{"2", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "+", 
+       RowBox[{"Bz", " ", 
+        SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{"0.25`", " ", "Bz", " ", 
+        SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+        SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+       RowBox[{
+        SuperscriptBox["Bz", "3"], " ", 
+        SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], "-", 
+          RowBox[{"Ap", " ", "At"}], "-", 
+          RowBox[{"2", " ", "Aa", " ", "D"}], "+", 
+          SuperscriptBox["D", "2"], "-", 
+          RowBox[{"0.25`", " ", 
+           SuperscriptBox["Ex", "2"]}], "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+          RowBox[{"2", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"2", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+          "-", 
+          RowBox[{
+           SuperscriptBox["Bz", "2"], " ", 
+           SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"2", " ", "Aa"}], "-", 
+          RowBox[{"2", " ", "D"}], "+", 
+          RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+        SuperscriptBox["#1", "2"]}], "+", 
+       SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.883632656748436*^9, 3.883632856351227*^9, 
+  3.883633804399575*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"9ef37dc3-aa02-467c-ad9f-03e705fd0a3d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "1.`"}], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2.`", " ", 
+           SuperscriptBox["Ap", "2"]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"Ex", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`15.954589770191005", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    SuperscriptBox["Ap", "2"], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{
+                    "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "-", 
+                    RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`15.653559774527023", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", "D"}], "+", 
+                    RowBox[{
+                    "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                   ")"}], " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}], 
+            ")"}]}], ")"}]}], "+", 
+        RowBox[{
+         FractionBox["1", "Ex"], 
+         RowBox[{"2.`", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"1.`", " ", "Aa"}], "-", 
+            RowBox[{"1.`", " ", "D"}], "+", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+            RowBox[{"1.`", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`15.954589770191005", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    SuperscriptBox["Ap", "2"], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{
+                    "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "-", 
+                    RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`15.653559774527023", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", "D"}], "+", 
+                    RowBox[{
+                    "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                   ")"}], " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}]}], 
+           ")"}]}]}]}], ")"}]}], ",", "0", ",", "0", ",", 
+     RowBox[{"-", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1.`", " ", "Ap"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"Root", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"Aa", " ", 
+               SuperscriptBox["Ap", "2"]}], "+", 
+              RowBox[{
+               SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+              RowBox[{
+               SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+              
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              
+              RowBox[{"Bz", " ", 
+               SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+               SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+               SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+               "\[Gamma]n"}], "+", 
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Bz", "3"], " ", 
+               SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"2.`16.255619765854984", " ", 
+               SuperscriptBox["Bz", "2"], " ", "D", " ", 
+               SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+              RowBox[{"1.`15.954589770191005", " ", 
+               SuperscriptBox["Bz", "3"], " ", 
+               SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                  SuperscriptBox["Aa", "2"]}], "-", 
+                 SuperscriptBox["Ap", "2"], "+", 
+                 SuperscriptBox["D", "2"], "-", 
+                 RowBox[{"0.25`15.954589770191005", " ", 
+                  SuperscriptBox["Ex", "2"]}], "-", 
+                 RowBox[{
+                 "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                  "\[Gamma]e"}], "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                 RowBox[{"1.`15.653559774527023", " ", 
+                  SuperscriptBox["Bz", "2"], " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+              "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "2"}], " ", "D"}], "+", 
+                 RowBox[{
+                 "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                ")"}], " ", 
+               SuperscriptBox["#1", "2"]}], "+", 
+              SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}], 
+         ")"}]}], ")"}]}], ",", "1.`", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "1.`"}], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2.`", " ", 
+           SuperscriptBox["Ap", "2"]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"Ex", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`15.954589770191005", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    SuperscriptBox["Ap", "2"], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{
+                    "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "-", 
+                    RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`15.653559774527023", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", "D"}], "+", 
+                    RowBox[{
+                    "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                   ")"}], " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}], 
+            ")"}]}], ")"}]}], "+", 
+        RowBox[{
+         FractionBox["1", "Ex"], 
+         RowBox[{"2.`", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"1.`", " ", "Aa"}], "-", 
+            RowBox[{"1.`", " ", "D"}], "+", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+            RowBox[{"1.`", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`15.954589770191005", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    SuperscriptBox["Ap", "2"], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{
+                    "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "-", 
+                    RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`15.653559774527023", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", "D"}], "+", 
+                    RowBox[{
+                    "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                   ")"}], " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}]}], 
+           ")"}]}]}]}], ")"}]}], ",", "0", ",", "0", ",", 
+     RowBox[{"-", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1.`", " ", "Ap"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"Root", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"Aa", " ", 
+               SuperscriptBox["Ap", "2"]}], "+", 
+              RowBox[{
+               SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+              RowBox[{
+               SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+              
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              
+              RowBox[{"Bz", " ", 
+               SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+               SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+               SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+               "\[Gamma]n"}], "+", 
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Bz", "3"], " ", 
+               SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"2.`16.255619765854984", " ", 
+               SuperscriptBox["Bz", "2"], " ", "D", " ", 
+               SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+              RowBox[{"1.`15.954589770191005", " ", 
+               SuperscriptBox["Bz", "3"], " ", 
+               SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                  SuperscriptBox["Aa", "2"]}], "-", 
+                 SuperscriptBox["Ap", "2"], "+", 
+                 SuperscriptBox["D", "2"], "-", 
+                 RowBox[{"0.25`15.954589770191005", " ", 
+                  SuperscriptBox["Ex", "2"]}], "-", 
+                 RowBox[{
+                 "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                  "\[Gamma]e"}], "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                 RowBox[{"1.`15.653559774527023", " ", 
+                  SuperscriptBox["Bz", "2"], " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+              "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "2"}], " ", "D"}], "+", 
+                 RowBox[{
+                 "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                ")"}], " ", 
+               SuperscriptBox["#1", "2"]}], "+", 
+              SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}], 
+         ")"}]}], ")"}]}], ",", "1.`", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "1.`"}], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2.`", " ", 
+           SuperscriptBox["Ap", "2"]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"Ex", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`15.954589770191005", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    SuperscriptBox["Ap", "2"], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{
+                    "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "-", 
+                    RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`15.653559774527023", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", "D"}], "+", 
+                    RowBox[{
+                    "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                   ")"}], " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}], 
+            ")"}]}], ")"}]}], "+", 
+        RowBox[{
+         FractionBox["1", "Ex"], 
+         RowBox[{"2.`", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"1.`", " ", "Aa"}], "-", 
+            RowBox[{"1.`", " ", "D"}], "+", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+            RowBox[{"1.`", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`15.954589770191005", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    SuperscriptBox["Ap", "2"], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{
+                    "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "-", 
+                    RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`15.653559774527023", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", "D"}], "+", 
+                    RowBox[{
+                    "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                   ")"}], " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}]}], 
+           ")"}]}]}]}], ")"}]}], ",", "0", ",", "0", ",", 
+     RowBox[{"-", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1.`", " ", "Ap"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+          RowBox[{"Root", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"Aa", " ", 
+               SuperscriptBox["Ap", "2"]}], "+", 
+              RowBox[{
+               SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+              RowBox[{
+               SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+              
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              
+              RowBox[{"Bz", " ", 
+               SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"0.25`15.954589770191005", " ", "Bz", " ", 
+               SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"2.`16.255619765854984", " ", "Aa", " ", 
+               SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+               "\[Gamma]n"}], "+", 
+              RowBox[{"1.`16.255619765854984", " ", 
+               SuperscriptBox["Bz", "3"], " ", 
+               SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+              RowBox[{"2.`16.255619765854984", " ", 
+               SuperscriptBox["Bz", "2"], " ", "D", " ", 
+               SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+              RowBox[{"1.`15.954589770191005", " ", 
+               SuperscriptBox["Bz", "3"], " ", 
+               SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "1.`16.255619765854984"}], " ", 
+                  SuperscriptBox["Aa", "2"]}], "-", 
+                 SuperscriptBox["Ap", "2"], "+", 
+                 SuperscriptBox["D", "2"], "-", 
+                 RowBox[{"0.25`15.954589770191005", " ", 
+                  SuperscriptBox["Ex", "2"]}], "-", 
+                 RowBox[{
+                 "2.`16.255619765854984", " ", "Aa", " ", "Bz", " ", 
+                  "\[Gamma]e"}], "-", 
+                 RowBox[{"1.`16.255619765854984", " ", 
+                  SuperscriptBox["Bz", "2"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                 RowBox[{"1.`15.653559774527023", " ", 
+                  SuperscriptBox["Bz", "2"], " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+              "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "2"}], " ", "D"}], "+", 
+                 RowBox[{
+                 "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                ")"}], " ", 
+               SuperscriptBox["#1", "2"]}], "+", 
+              SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}], 
+         ")"}]}], ")"}]}], ",", "1.`", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", 
+      RowBox[{
+       FractionBox["1", "Ex"], 
+       RowBox[{"2.`", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"1.`", " ", "Aa"}], "-", 
+          RowBox[{"1.`", " ", "D"}], "+", 
+          RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+          RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+          RowBox[{"1.`", " ", 
+           RowBox[{"Root", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap", 
+                " ", "At"}], "+", 
+               RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+               RowBox[{
+               "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                "\[Gamma]e"}], "+", 
+               RowBox[{"1.`15.778498511135323", " ", 
+                SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+               RowBox[{
+               "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                "\[Gamma]n"}], "-", 
+               RowBox[{
+               "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                "\[Gamma]n"}], "+", 
+               RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"1.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", 
+                SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"2.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+               RowBox[{"1.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", 
+                SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"1.`15.954589770191005", " ", 
+                   SuperscriptBox["Aa", "2"]}], "-", 
+                  RowBox[{"Ap", " ", "At"}], "-", 
+                  RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], "+", 
+                  SuperscriptBox["D", "2"], "-", 
+                  RowBox[{"0.25`15.954589770191005", " ", 
+                   SuperscriptBox["Ex", "2"]}], "-", 
+                  RowBox[{"1.`16.255619765854984", " ", 
+                   SuperscriptBox["Bz", "2"], " ", 
+                   SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                  RowBox[{
+                  "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{
+                  "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{"2.`16.079528506799306", " ", 
+                   SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{"1.`15.954589770191005", " ", 
+                   SuperscriptBox["Bz", "2"], " ", 
+                   SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+               "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                  RowBox[{"2", " ", "D"}], "+", 
+                  RowBox[{
+                  "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                 ")"}], " ", 
+                SuperscriptBox["#1", "2"]}], "+", 
+               SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}]}], 
+         ")"}]}]}]}], ",", 
+     RowBox[{
+      FractionBox["1", 
+       RowBox[{"At", " ", "Ex"}]], 
+      RowBox[{"2.`", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"0.25`", " ", 
+          SuperscriptBox["Ex", "2"]}], "-", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`"}], " ", "Aa"}], "+", "D", "-", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"Root", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap",
+                  " ", "At"}], "+", 
+                RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]e"}], "+", 
+                RowBox[{"1.`15.778498511135323", " ", 
+                 SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]n"}], "-", 
+                RowBox[{
+                "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                 "\[Gamma]n"}], "+", 
+                RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                 SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                 SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"2.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                 SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                   RowBox[{"Ap", " ", "At"}], "-", 
+                   RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], 
+                   "+", 
+                   SuperscriptBox["D", "2"], "-", 
+                   RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                   RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                   RowBox[{
+                   "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`16.079528506799306", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                   RowBox[{"2", " ", "D"}], "+", 
+                   RowBox[{
+                   "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                  ")"}], " ", 
+                 SuperscriptBox["#1", "2"]}], "+", 
+                SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}], 
+           ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`"}], " ", "Aa"}], "+", "D", "+", 
+            RowBox[{"Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"Root", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap",
+                  " ", "At"}], "+", 
+                RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]e"}], "+", 
+                RowBox[{"1.`15.778498511135323", " ", 
+                 SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]n"}], "-", 
+                RowBox[{
+                "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                 "\[Gamma]n"}], "+", 
+                RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                 SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                 SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"2.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                 SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                   RowBox[{"Ap", " ", "At"}], "-", 
+                   RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], 
+                   "+", 
+                   SuperscriptBox["D", "2"], "-", 
+                   RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                   RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                   RowBox[{
+                   "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`16.079528506799306", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                   RowBox[{"2", " ", "D"}], "+", 
+                   RowBox[{
+                   "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                  ")"}], " ", 
+                 SuperscriptBox["#1", "2"]}], "+", 
+                SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}], 
+           ")"}]}]}], ")"}]}]}], ",", "0", ",", "0", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", 
+      RowBox[{
+       FractionBox["1", "Ex"], 
+       RowBox[{"2.`", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"1.`", " ", "Aa"}], "-", 
+          RowBox[{"1.`", " ", "D"}], "+", 
+          RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+          RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+          RowBox[{"1.`", " ", 
+           RowBox[{"Root", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap", 
+                " ", "At"}], "+", 
+               RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+               RowBox[{
+               "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                "\[Gamma]e"}], "+", 
+               RowBox[{"1.`15.778498511135323", " ", 
+                SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+               RowBox[{
+               "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                "\[Gamma]n"}], "-", 
+               RowBox[{
+               "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                "\[Gamma]n"}], "+", 
+               RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"1.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", 
+                SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"2.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+               RowBox[{"1.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", 
+                SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"1.`15.954589770191005", " ", 
+                   SuperscriptBox["Aa", "2"]}], "-", 
+                  RowBox[{"Ap", " ", "At"}], "-", 
+                  RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], "+", 
+                  SuperscriptBox["D", "2"], "-", 
+                  RowBox[{"0.25`15.954589770191005", " ", 
+                   SuperscriptBox["Ex", "2"]}], "-", 
+                  RowBox[{"1.`16.255619765854984", " ", 
+                   SuperscriptBox["Bz", "2"], " ", 
+                   SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                  RowBox[{
+                  "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{
+                  "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{"2.`16.079528506799306", " ", 
+                   SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{"1.`15.954589770191005", " ", 
+                   SuperscriptBox["Bz", "2"], " ", 
+                   SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+               "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                  RowBox[{"2", " ", "D"}], "+", 
+                  RowBox[{
+                  "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                 ")"}], " ", 
+                SuperscriptBox["#1", "2"]}], "+", 
+               SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}]}], 
+         ")"}]}]}]}], ",", 
+     RowBox[{
+      FractionBox["1", 
+       RowBox[{"At", " ", "Ex"}]], 
+      RowBox[{"2.`", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"0.25`", " ", 
+          SuperscriptBox["Ex", "2"]}], "-", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`"}], " ", "Aa"}], "+", "D", "-", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"Root", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap",
+                  " ", "At"}], "+", 
+                RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]e"}], "+", 
+                RowBox[{"1.`15.778498511135323", " ", 
+                 SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]n"}], "-", 
+                RowBox[{
+                "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                 "\[Gamma]n"}], "+", 
+                RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                 SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                 SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"2.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                 SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                   RowBox[{"Ap", " ", "At"}], "-", 
+                   RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], 
+                   "+", 
+                   SuperscriptBox["D", "2"], "-", 
+                   RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                   RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                   RowBox[{
+                   "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`16.079528506799306", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                   RowBox[{"2", " ", "D"}], "+", 
+                   RowBox[{
+                   "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                  ")"}], " ", 
+                 SuperscriptBox["#1", "2"]}], "+", 
+                SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}], 
+           ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`"}], " ", "Aa"}], "+", "D", "+", 
+            RowBox[{"Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"Root", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap",
+                  " ", "At"}], "+", 
+                RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]e"}], "+", 
+                RowBox[{"1.`15.778498511135323", " ", 
+                 SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]n"}], "-", 
+                RowBox[{
+                "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                 "\[Gamma]n"}], "+", 
+                RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                 SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                 SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"2.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                 SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                   RowBox[{"Ap", " ", "At"}], "-", 
+                   RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], 
+                   "+", 
+                   SuperscriptBox["D", "2"], "-", 
+                   RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                   RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                   RowBox[{
+                   "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`16.079528506799306", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                   RowBox[{"2", " ", "D"}], "+", 
+                   RowBox[{
+                   "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                  ")"}], " ", 
+                 SuperscriptBox["#1", "2"]}], "+", 
+                SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}], 
+           ")"}]}]}], ")"}]}]}], ",", "0", ",", "0", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", 
+      RowBox[{
+       FractionBox["1", "Ex"], 
+       RowBox[{"2.`", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"1.`", " ", "Aa"}], "-", 
+          RowBox[{"1.`", " ", "D"}], "+", 
+          RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+          RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+          RowBox[{"1.`", " ", 
+           RowBox[{"Root", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap", 
+                " ", "At"}], "+", 
+               RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+               RowBox[{
+               "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                "\[Gamma]e"}], "+", 
+               RowBox[{"1.`15.778498511135323", " ", 
+                SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+               RowBox[{
+               "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                "\[Gamma]n"}], "-", 
+               RowBox[{
+               "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                "\[Gamma]n"}], "+", 
+               RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"1.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", 
+                SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+               RowBox[{"2.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+               RowBox[{"1.`15.954589770191005", " ", 
+                SuperscriptBox["Bz", "3"], " ", 
+                SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"1.`15.954589770191005", " ", 
+                   SuperscriptBox["Aa", "2"]}], "-", 
+                  RowBox[{"Ap", " ", "At"}], "-", 
+                  RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], "+", 
+                  SuperscriptBox["D", "2"], "-", 
+                  RowBox[{"0.25`15.954589770191005", " ", 
+                   SuperscriptBox["Ex", "2"]}], "-", 
+                  RowBox[{"1.`16.255619765854984", " ", 
+                   SuperscriptBox["Bz", "2"], " ", 
+                   SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                  RowBox[{
+                  "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{
+                  "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{"2.`16.079528506799306", " ", 
+                   SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                   "\[Gamma]n"}], "-", 
+                  RowBox[{"1.`15.954589770191005", " ", 
+                   SuperscriptBox["Bz", "2"], " ", 
+                   SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+               "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                  RowBox[{"2", " ", "D"}], "+", 
+                  RowBox[{
+                  "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                 ")"}], " ", 
+                SuperscriptBox["#1", "2"]}], "+", 
+               SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}]}], 
+         ")"}]}]}]}], ",", 
+     RowBox[{
+      FractionBox["1", 
+       RowBox[{"At", " ", "Ex"}]], 
+      RowBox[{"2.`", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"0.25`", " ", 
+          SuperscriptBox["Ex", "2"]}], "-", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`"}], " ", "Aa"}], "+", "D", "-", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+            RowBox[{"1.`", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"Root", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap",
+                  " ", "At"}], "+", 
+                RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]e"}], "+", 
+                RowBox[{"1.`15.778498511135323", " ", 
+                 SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]n"}], "-", 
+                RowBox[{
+                "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                 "\[Gamma]n"}], "+", 
+                RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                 SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                 SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"2.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                 SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                   RowBox[{"Ap", " ", "At"}], "-", 
+                   RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], 
+                   "+", 
+                   SuperscriptBox["D", "2"], "-", 
+                   RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                   RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                   RowBox[{
+                   "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`16.079528506799306", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                   RowBox[{"2", " ", "D"}], "+", 
+                   RowBox[{
+                   "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                  ")"}], " ", 
+                 SuperscriptBox["#1", "2"]}], "+", 
+                SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}], 
+           ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`"}], " ", "Aa"}], "+", "D", "+", 
+            RowBox[{"Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"Root", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "1.`16.255619765854984"}], " ", "Aa", " ", "Ap",
+                  " ", "At"}], "+", 
+                RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]e"}], "+", 
+                RowBox[{"1.`15.778498511135323", " ", 
+                 SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                "-", 
+                RowBox[{
+                "1.`16.255619765854984", " ", "Ap", " ", "At", " ", "Bz", " ",
+                  "\[Gamma]n"}], "-", 
+                RowBox[{
+                "2.`15.954589770191005", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                 "\[Gamma]n"}], "+", 
+                RowBox[{"1.`16.255619765854984", " ", "Bz", " ", 
+                 SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"0.25`15.778498511135323", " ", "Bz", " ", 
+                 SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                RowBox[{"2.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                 SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                RowBox[{"1.`15.954589770191005", " ", 
+                 SuperscriptBox["Bz", "3"], " ", 
+                 SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                   RowBox[{"Ap", " ", "At"}], "-", 
+                   RowBox[{"2.`16.255619765854984", " ", "Aa", " ", "D"}], 
+                   "+", 
+                   SuperscriptBox["D", "2"], "-", 
+                   RowBox[{"0.25`15.954589770191005", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                   RowBox[{"1.`16.255619765854984", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                   RowBox[{
+                   "2.`15.857679757182947", " ", "Aa", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`16.079528506799306", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`16.079528506799306", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`15.954589770191005", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"2.`16.255619765854984", " ", "Aa"}], "-", 
+                   RowBox[{"2", " ", "D"}], "+", 
+                   RowBox[{
+                   "1.`15.954589770191005", " ", "Bz", " ", "\[Gamma]n"}]}], 
+                  ")"}], " ", 
+                 SuperscriptBox["#1", "2"]}], "+", 
+                SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}], 
+           ")"}]}]}], ")"}]}]}], ",", "0", ",", "0", ",", "1.`"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.883632656748436*^9, 3.883632856351227*^9, 
+  3.883633804417283*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"9d97af8c-210f-49f9-9a56-7c6a173ae501"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"Aa", " ", 
+          SuperscriptBox["Ap", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+         RowBox[{
+          SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", "Bz", " ", 
+          SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"0.25`2.", " ", "Bz", " ", 
+          SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"2.`2.", " ", "Aa", " ", 
+          SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+         "+", 
+         RowBox[{
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"2.`2.", " ", 
+          SuperscriptBox["Bz", "2"], " ", "D", " ", 
+          SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`2."}], " ", 
+             SuperscriptBox["Aa", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Ap", "2"]}], "+", 
+            SuperscriptBox["D", "2"], "-", 
+            RowBox[{"0.25`2.", " ", 
+             SuperscriptBox["Ex", "2"]}], "-", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+          SuperscriptBox["#1", "2"]}], "+", 
+         SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}], ",", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"Aa", " ", 
+          SuperscriptBox["Ap", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+         RowBox[{
+          SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", "Bz", " ", 
+          SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"0.25`2.", " ", "Bz", " ", 
+          SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"2.`2.", " ", "Aa", " ", 
+          SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+         "+", 
+         RowBox[{
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"2.`2.", " ", 
+          SuperscriptBox["Bz", "2"], " ", "D", " ", 
+          SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`2."}], " ", 
+             SuperscriptBox["Aa", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Ap", "2"]}], "+", 
+            SuperscriptBox["D", "2"], "-", 
+            RowBox[{"0.25`2.", " ", 
+             SuperscriptBox["Ex", "2"]}], "-", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+          SuperscriptBox["#1", "2"]}], "+", 
+         SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}], ",", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"Aa", " ", 
+          SuperscriptBox["Ap", "2"]}], "+", 
+         RowBox[{
+          SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+         RowBox[{
+          SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], "+", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", "Bz", " ", 
+          SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"0.25`2.", " ", "Bz", " ", 
+          SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"2.`2.", " ", "Aa", " ", 
+          SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+         "+", 
+         RowBox[{
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+         RowBox[{"2.`2.", " ", 
+          SuperscriptBox["Bz", "2"], " ", "D", " ", 
+          SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1.`2."}], " ", 
+             SuperscriptBox["Aa", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Ap", "2"]}], "+", 
+            SuperscriptBox["D", "2"], "-", 
+            RowBox[{"0.25`2.", " ", 
+             SuperscriptBox["Ex", "2"]}], "-", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+          SuperscriptBox["#1", "2"]}], "+", 
+         SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}], ",", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}], "+", 
+         RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+         RowBox[{"1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}],
+          "+", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}],
+          "-", 
+         RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+         "+", 
+         RowBox[{"Bz", " ", 
+          SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"0.25`2.", " ", "Bz", " ", 
+          SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"2.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+          SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["Aa", "2"], "-", 
+            RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+            SuperscriptBox["D", "2"], "-", 
+            RowBox[{"0.25`2.", " ", 
+             SuperscriptBox["Ex", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"2.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+            "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2.`2.", " ", "Aa"}], "-", 
+            RowBox[{"2.`2.", " ", "D"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+          SuperscriptBox["#1", "2"]}], "+", 
+         SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}], ",", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}], "+", 
+         RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+         RowBox[{"1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}],
+          "+", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}],
+          "-", 
+         RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+         "+", 
+         RowBox[{"Bz", " ", 
+          SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"0.25`2.", " ", "Bz", " ", 
+          SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"2.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+          SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["Aa", "2"], "-", 
+            RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+            SuperscriptBox["D", "2"], "-", 
+            RowBox[{"0.25`2.", " ", 
+             SuperscriptBox["Ex", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"2.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+            "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2.`2.", " ", "Aa"}], "-", 
+            RowBox[{"2.`2.", " ", "D"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+          SuperscriptBox["#1", "2"]}], "+", 
+         SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}], ",", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}], "+", 
+         RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+         RowBox[{"1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}],
+          "+", 
+         RowBox[{
+          SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}],
+          "-", 
+         RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+         "+", 
+         RowBox[{"Bz", " ", 
+          SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"0.25`2.", " ", "Bz", " ", 
+          SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+         RowBox[{"2.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+          SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+         RowBox[{"1.`2.", " ", 
+          SuperscriptBox["Bz", "3"], " ", 
+          SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["Aa", "2"], "-", 
+            RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+            SuperscriptBox["D", "2"], "-", 
+            RowBox[{"0.25`2.", " ", 
+             SuperscriptBox["Ex", "2"]}], "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+            RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"2.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", "\[Gamma]n"}], 
+            "-", 
+            RowBox[{"1.`2.", " ", 
+             SuperscriptBox["Bz", "2"], " ", 
+             SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2.`2.", " ", "Aa"}], "-", 
+            RowBox[{"2.`2.", " ", "D"}], "+", 
+            RowBox[{"Bz", " ", "\[Gamma]n"}]}], ")"}], " ", 
+          SuperscriptBox["#1", "2"]}], "+", 
+         SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}], "}"}], ",", 
+   
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "1.`2."}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2.`2.", " ", 
+             SuperscriptBox["Ap", "2"]}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"Ex", " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+               RowBox[{"1.`2.", " ", 
+                RowBox[{"Root", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Aa", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                    RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                    "+", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "+", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                    "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                    SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}]}],
+               ")"}]}], ")"}]}], "+", 
+          RowBox[{
+           FractionBox["1", "Ex"], 
+           RowBox[{"2.`2.", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1.`2.", " ", "Aa"}], "-", 
+              RowBox[{"1.`2.", " ", "D"}], "+", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Aa", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                   RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                   RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                   "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"2.`2.", " ", "Aa", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}]}], 
+             ")"}]}]}]}], ")"}]}], ",", "0", ",", "0", ",", 
+       RowBox[{"-", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1.`2.", " ", "Ap"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"1.`2.", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`2.", " ", "Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`2.", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`2.", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`2.", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                  " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}]}], 
+           ")"}]}], ")"}]}], ",", "1.`2.", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "1.`2."}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2.`2.", " ", 
+             SuperscriptBox["Ap", "2"]}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"Ex", " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+               RowBox[{"1.`2.", " ", 
+                RowBox[{"Root", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Aa", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                    RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                    "+", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "+", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                    "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                    SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}]}],
+               ")"}]}], ")"}]}], "+", 
+          RowBox[{
+           FractionBox["1", "Ex"], 
+           RowBox[{"2.`2.", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1.`2.", " ", "Aa"}], "-", 
+              RowBox[{"1.`2.", " ", "D"}], "+", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Aa", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                   RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                   RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                   "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"2.`2.", " ", "Aa", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}]}], 
+             ")"}]}]}]}], ")"}]}], ",", "0", ",", "0", ",", 
+       RowBox[{"-", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1.`2.", " ", "Ap"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"1.`2.", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`2.", " ", "Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`2.", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`2.", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`2.", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                  " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}]}], 
+           ")"}]}], ")"}]}], ",", "1.`2.", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "1.`2."}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2.`2.", " ", 
+             SuperscriptBox["Ap", "2"]}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"Ex", " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+               RowBox[{"1.`2.", " ", 
+                RowBox[{"Root", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Aa", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                    RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                    "+", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "+", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                    "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                    SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}]}],
+               ")"}]}], ")"}]}], "+", 
+          RowBox[{
+           FractionBox["1", "Ex"], 
+           RowBox[{"2.`2.", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"1.`2.", " ", "Aa"}], "-", 
+              RowBox[{"1.`2.", " ", "D"}], "+", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Aa", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                   RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                   RowBox[{
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                   "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"2.`2.", " ", "Aa", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}]}], 
+             ")"}]}]}]}], ")"}]}], ",", "0", ",", "0", ",", 
+       RowBox[{"-", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1.`2.", " ", "Ap"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+            RowBox[{"1.`2.", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Aa", " ", 
+                  SuperscriptBox["Ap", "2"]}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "D"}], "+", 
+                 RowBox[{
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]e"}], 
+                 "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Ap", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{"1.`2.", " ", "Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"0.25`2.", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`2.", " ", "Aa", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                  "\[Gamma]n"}], "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "+", 
+                 RowBox[{"2.`2.", " ", 
+                  SuperscriptBox["Bz", "2"], " ", "D", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Ap", "2"]}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]e"}],
+                     "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2.`2."}], " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                  " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}]}], 
+           ")"}]}], ")"}]}], ",", "1.`2.", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", 
+        RowBox[{
+         FractionBox["1", "Ex"], 
+         RowBox[{"2.`2.", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"1.`2.", " ", "Aa"}], "-", 
+            RowBox[{"1.`2.", " ", "D"}], "+", 
+            RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+            RowBox[{"1.`2.", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}], 
+                 "+", 
+                 RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                 RowBox[{
+                 "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}],
+                  "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{
+                 "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}],
+                  "-", 
+                 RowBox[{
+                 "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                 "+", 
+                 RowBox[{"1.`2.", " ", "Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"0.25`2.", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"2.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                  " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}]}], 
+           ")"}]}]}]}], ",", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"At", " ", "Ex"}]], 
+        RowBox[{"2.`2.", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"0.25`2.", " ", 
+            SuperscriptBox["Ex", "2"]}], "-", 
+           RowBox[{"1.`2.", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "1.`2."}], " ", "Aa"}], "+", "D", "-", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}],
+                    "+", 
+                   RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}]}], 
+             ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "1.`2."}], " ", "Aa"}], "+", "D", "+", 
+              RowBox[{"Bz", " ", "\[Gamma]e"}], "+", 
+              RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}],
+                    "+", 
+                   RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "1"}], "]"}]}]}], 
+             ")"}]}]}], ")"}]}]}], ",", "0", ",", "0", ",", "1.`2."}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", 
+        RowBox[{
+         FractionBox["1", "Ex"], 
+         RowBox[{"2.`2.", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"1.`2.", " ", "Aa"}], "-", 
+            RowBox[{"1.`2.", " ", "D"}], "+", 
+            RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+            RowBox[{"1.`2.", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}], 
+                 "+", 
+                 RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                 RowBox[{
+                 "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}],
+                  "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{
+                 "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}],
+                  "-", 
+                 RowBox[{
+                 "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                 "+", 
+                 RowBox[{"1.`2.", " ", "Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"0.25`2.", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"2.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                  " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}]}], 
+           ")"}]}]}]}], ",", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"At", " ", "Ex"}]], 
+        RowBox[{"2.`2.", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"0.25`2.", " ", 
+            SuperscriptBox["Ex", "2"]}], "-", 
+           RowBox[{"1.`2.", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "1.`2."}], " ", "Aa"}], "+", "D", "-", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}],
+                    "+", 
+                   RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}]}], 
+             ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "1.`2."}], " ", "Aa"}], "+", "D", "+", 
+              RowBox[{"Bz", " ", "\[Gamma]e"}], "+", 
+              RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}],
+                    "+", 
+                   RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "2"}], "]"}]}]}], 
+             ")"}]}]}], ")"}]}]}], ",", "0", ",", "0", ",", "1.`2."}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", 
+        RowBox[{
+         FractionBox["1", "Ex"], 
+         RowBox[{"2.`2.", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"1.`2.", " ", "Aa"}], "-", 
+            RowBox[{"1.`2.", " ", "D"}], "+", 
+            RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "+", 
+            RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "+", 
+            RowBox[{"1.`2.", " ", 
+             RowBox[{"Root", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}], 
+                 "+", 
+                 RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                 RowBox[{
+                 "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]e"}],
+                  "+", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                 "-", 
+                 RowBox[{
+                 "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", "\[Gamma]n"}],
+                  "-", 
+                 RowBox[{
+                 "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                 "+", 
+                 RowBox[{"1.`2.", " ", "Bz", " ", 
+                  SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"0.25`2.", " ", "Bz", " ", 
+                  SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                 RowBox[{"2.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                  SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                 RowBox[{"1.`2.", " ", 
+                  SuperscriptBox["Bz", "3"], " ", 
+                  SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                 "+", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                  " ", 
+                  SuperscriptBox["#1", "2"]}], "+", 
+                 SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}]}], 
+           ")"}]}]}]}], ",", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"At", " ", "Ex"}]], 
+        RowBox[{"2.`2.", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"0.25`2.", " ", 
+            SuperscriptBox["Ex", "2"]}], "-", 
+           RowBox[{"1.`2.", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "1.`2."}], " ", "Aa"}], "+", "D", "-", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]e"}], "-", 
+              RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}], "-", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}],
+                    "+", 
+                   RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}]}], 
+             ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "1.`2."}], " ", "Aa"}], "+", "D", "+", 
+              RowBox[{"Bz", " ", "\[Gamma]e"}], "+", 
+              RowBox[{"Bz", " ", "\[Gamma]n"}], "-", 
+              RowBox[{"1.`2.", " ", 
+               RowBox[{"Root", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "1.`2."}], " ", "Aa", " ", "Ap", " ", "At"}],
+                    "+", 
+                   RowBox[{"Ap", " ", "At", " ", "D"}], "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]e"}], "+", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"], " ", "Bz", " ", "\[Gamma]n"}], 
+                   "-", 
+                   RowBox[{
+                   "1.`2.", " ", "Ap", " ", "At", " ", "Bz", " ", 
+                    "\[Gamma]n"}], "-", 
+                   RowBox[{
+                   "2.`2.", " ", "Aa", " ", "Bz", " ", "D", " ", 
+                    "\[Gamma]n"}], "+", 
+                   RowBox[{"1.`2.", " ", "Bz", " ", 
+                    SuperscriptBox["D", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"0.25`2.", " ", "Bz", " ", 
+                    SuperscriptBox["Ex", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"], " ", "\[Gamma]n"}], "-", 
+                   RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", "\[Gamma]e", " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}], "-", 
+                   RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "3"], " ", 
+                    SuperscriptBox["\[Gamma]n", "3"]}], "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Aa", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", "Ap", " ", "At"}], "-", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "D"}], "+", 
+                    SuperscriptBox["D", "2"], "-", 
+                    RowBox[{"0.25`2.", " ", 
+                    SuperscriptBox["Ex", "2"]}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]e", "2"]}], "+", 
+                    RowBox[{"2.`2.", " ", "Aa", " ", "Bz", " ", "\[Gamma]n"}],
+                     "-", 
+                    RowBox[{"2.`2.", " ", "Bz", " ", "D", " ", "\[Gamma]n"}], 
+                    "-", 
+                    RowBox[{"2.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", "\[Gamma]e", " ", 
+                    "\[Gamma]n"}], "-", 
+                    RowBox[{"1.`2.", " ", 
+                    SuperscriptBox["Bz", "2"], " ", 
+                    SuperscriptBox["\[Gamma]n", "2"]}]}], ")"}], " ", "#1"}], 
+                   "+", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2.`2.", " ", "Aa"}], "-", 
+                    RowBox[{"2.`2.", " ", "D"}], "+", 
+                    RowBox[{"1.`2.", " ", "Bz", " ", "\[Gamma]n"}]}], ")"}], 
+                    " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                   SuperscriptBox["#1", "3"]}], "&"}], ",", "3"}], "]"}]}]}], 
+             ")"}]}]}], ")"}]}]}], ",", "0", ",", "0", ",", "1.`2."}], 
+      "}"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.883632656748436*^9, 3.883632856351227*^9, 
+  3.883633804567669*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"f14cac30-a57f-4ec1-b468-d8f046a14531"]
+}, Open  ]]
+},
+WindowSize->{808, 762},
+WindowMargins->{{4, Automatic}, {Automatic, -72}},
+FrontEndVersion->"13.1 for Mac OS X x86 (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"7e577de3-393c-4911-af3e-1ea90c6cbcc2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 252, 7, 58, "Text",ExpressionUUID->"2cc823a3-2665-41a8-a79d-56b10e02c0ce"],
+Cell[813, 29, 187, 3, 35, "Text",ExpressionUUID->"6b151494-555f-46e7-9332-1d5b1876edba"],
+Cell[1003, 34, 1991, 54, 73, "Input",ExpressionUUID->"1d339442-ecf6-4d89-8091-abd921d11e48"],
+Cell[2997, 90, 211, 5, 30, "Input",ExpressionUUID->"fa772ec2-3b3c-47b9-891a-1c122b0b1636"],
+Cell[CellGroupData[{
+Cell[3233, 99, 81, 0, 30, "Input",ExpressionUUID->"4a4e6b9f-63e8-4447-a2ae-acb7596d2980"],
+Cell[3317, 101, 1791, 53, 77, "Output",ExpressionUUID->"18e84d03-293c-47d4-9f56-730620bd7aa9"]
+}, Open  ]],
+Cell[5123, 157, 1007, 24, 52, "Input",ExpressionUUID->"29111974-32f8-4afa-816b-f1024788288c"],
+Cell[CellGroupData[{
+Cell[6155, 185, 251, 7, 30, "Input",ExpressionUUID->"862b3123-b61f-4872-8ffe-dfad6ca9f567"],
+Cell[6409, 194, 12956, 327, 480, "Output",ExpressionUUID->"9ef37dc3-aa02-467c-ad9f-03e705fd0a3d"],
+Cell[19368, 523, 66089, 1416, 3692, "Output",ExpressionUUID->"9d97af8c-210f-49f9-9a56-7c6a173ae501"],
+Cell[85460, 1941, 78952, 1732, 2601, "Output",ExpressionUUID->"f14cac30-a57f-4ec1-b468-d8f046a14531"]
+}, Open  ]]
+}
+]
+*)
+

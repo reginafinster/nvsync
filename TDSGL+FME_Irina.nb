@@ -1,0 +1,2176 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     95998,       2168]
+NotebookOptionsPosition[     93887,       2125]
+NotebookOutlinePosition[     94312,       2142]
+CellTagsIndexPosition[     94269,       2139]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[StyleBox["Example numerical time evolution operator", \
+"Subtitle"]], "Section",
+ CellChangeTimes->{{3.819613298665439*^9, 3.819613311454607*^9}, {
+  3.921666116155126*^9, 
+  3.921666131384025*^9}},ExpressionUUID->"c1f985f2-96a6-42d6-833d-\
+81721ee28e9e"],
+
+Cell[BoxData[{
+ RowBox[{"Example", " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", 
+   RowBox[{"(", "t", ")"}]}], "=", " ", 
+  RowBox[{"Ez", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {
+        RowBox[{"1", " "}], "0"},
+       {"0", 
+        RowBox[{"-", "1"}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]], "t", " ", 
+   RowBox[{"(", 
+    RowBox[{"generally", " ", "H", 
+     RowBox[{"(", "t", ")"}], " ", "is", " ", "arbitrary", " ", "funtion", 
+     " ", "of", " ", "t"}], ")"}]}]}]}], "Text",
+ CellChangeTimes->{{3.81961337583414*^9, 3.819613998539501*^9}, {
+   3.819614055731628*^9, 3.819614057362281*^9}, 3.9216661352777967`*^9, {
+   3.921666201972117*^9, 3.92166625185401*^9}},
+ FontColor->GrayLevel[
+  0.5],ExpressionUUID->"7ee116b7-01f3-4a73-9904-d8d5c728236d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"H", "=", 
+   RowBox[{"Ez", "*", 
+    RowBox[{"Cos", "[", 
+     RowBox[{"\[Omega]", "*", "t"}], "]"}], "*", 
+    RowBox[{"PauliMatrix", "[", "1", "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"H", "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.921666140746324*^9, 3.9216661930133457`*^9}, {
+  3.9216666140245333`*^9, 3.921666622900812*^9}, {3.921666705274613*^9, 
+  3.92166670563122*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"99f11d72-cd88-4d8c-9fe5-f5732bc1ff61"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"0", 
+      RowBox[{"Ez", " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{"t", " ", "\[Omega]"}], "]"}]}]},
+     {
+      RowBox[{"Ez", " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{"t", " ", "\[Omega]"}], "]"}]}], "0"}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.921666194076667*^9, 3.921666639895986*^9, 
+  3.921666706036919*^9, 3.92171766587285*^9},
+ CellLabel->
+  "Out[2]//MatrixForm=",ExpressionUUID->"59d8998b-e596-42d5-bc5c-\
+a0e0bd6b0354"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Solve", " ", "time", " ", "dependent", " ", 
+  "Schr\[ODoubleDot]dinger", " ", "equation", " ", "between", " ", "time", 
+  " ", "t0", " ", "and", " ", "t1"}]], "Text",
+ CellChangeTimes->{{3.81961337583414*^9, 3.819613998539501*^9}, {
+   3.819614055731628*^9, 3.819614057362281*^9}, 3.9216661352777967`*^9, {
+   3.921666201972117*^9, 3.92166625185401*^9}, {3.921666396822929*^9, 
+   3.9216664299760838`*^9}, {3.9216666411605597`*^9, 
+   3.9216666422158413`*^9}, {3.9216667071671333`*^9, 3.921666707957889*^9}},
+ FontColor->GrayLevel[
+  0.5],ExpressionUUID->"cf70912c-09d6-4aef-ba0d-223389c8f43c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"u0", "=", 
+   RowBox[{"IdentityMatrix", "@", 
+    RowBox[{"Length", "@", "H"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"t0", ",", "t1"}], "}"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "10"}], "}"}]}], ";"}], "\n", 
+ RowBox[{"NDSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[ImaginaryI]", "*", 
+       RowBox[{"D", "[", 
+        RowBox[{
+         RowBox[{"u", "[", "t", "]"}], ",", "t"}], "]"}]}], "\[Equal]", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"H", "/.", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Ez", "->", "1"}], ",", 
+           RowBox[{"\[Omega]", "->", "1"}]}], "}"}]}], ")"}], ".", 
+       RowBox[{"u", "[", "t", "]"}]}]}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", "t0", "]"}], "\[Equal]", "u0"}]}], "}"}], ",", 
+   RowBox[{"u", "[", "t", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "t0", ",", "t1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.921666142695121*^9, 3.9216661448559093`*^9}, {
+  3.921666261696528*^9, 3.9216662743241158`*^9}, {3.921666305051455*^9, 
+  3.9216663076019487`*^9}, {3.921666600482649*^9, 3.921666627634206*^9}, {
+  3.921666664739079*^9, 3.9216666867498837`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"664c7c45-f5b2-4db6-a471-0f0cba085b60"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"u", "[", "t", "]"}], "\[Rule]", 
+    RowBox[{
+     InterpretationBox[
+      RowBox[{
+       TagBox["InterpolatingFunction",
+        "SummaryHead"], "[", 
+       DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
+        "Ready"}, 
+        TemplateBox[{
+          PaneSelectorBox[{False -> GridBox[{{
+                PaneBox[
+                 ButtonBox[
+                  DynamicBox[
+                   FEPrivate`FrontEndResource[
+                   "FEBitmaps", "SummaryBoxOpener"]], 
+                  ButtonFunction :> (Typeset`open$$ = True), Appearance -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+                 Dynamic[{
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
+                GraphicsBox[{{
+                   GrayLevel[0.6], 
+                   AbsolutePointSize[5], 
+                   PointBox[{1, 1}], 
+                   PointBox[{2, 4}], 
+                   PointBox[{3, 2}], 
+                   PointBox[{4, 3}]}, {{}, {}, {
+                    AbsoluteThickness[1], 
+                    Opacity[1.], 
+                    LineBox[CompressedData["
+1:eJwBMQPO/CFib1JlAgAAADIAAAACAAAA4ScLwZmZ6T/ACPskWpOYv4AjHgZ5
+3Os/cnpQh5xu1j/qWn1XCVDuP5K7ih5ptuc/r+pongFN8D/CUK87BHLxP46d
+cUQ/bPE/ujUa8/qu9j9TbqBw1aPyP/TWyyAhFfw/neDJZqDG8z+QAqdF9GsA
+QM1wGePDAfU/VsVD/9nXAkCidscSKDf2P6Bp73exDQVA/B1wDMFX9z+TpM3k
+wfUGQDzjPoyykPg/7M3Z+O7ZCEABSgjW2LT5P3pl9LwNcgpAbCYw0z/T+j86
+ypori9cLQL0gflb/Cfw/lpOs9xIqDUCTvMaj8yv9Pw4alcoYNg5AT3Y1d0Bm
+/j+pB2LLtyIPQLClAv7Nmv8/NnA5bbjSD0BLO2UnSF0AQFrcILXmpw9AsTLc
+klX5AED+sDHBQukOQNp6UGP9igFAbZ+lR/sLDkD10dd20SgCQNHi3Mj38wxA
+42MO5MXDAkAZdr6AZb8LQJRGQrZUVANArv7zEMKHCkA4OInLD/EDQLBlMO3M
+IglAnnrNRWWDBEA3d8OX6skHQNf3wBnbEgVAD3D3ndNyBkADhMcwfa4FQHOK
+7Wak/wRA8WDLrLk/BkC/MhCgYawDQNJM4msi3QZAwss/TmVLAkCGc6iEq3cH
+QIsIg92+BgFA/OprAs8HCECrPCvgePD/P2VxQsMepAhAKXVLE0Xg/j+RSBbp
+CDYJQPRz0a7WJ/4/kFqZaBPFCUDN4sX5uLj9P4J7LytKYApAvh1MbRmT/T82
+7cJSG/EKQHzT1YZwwv0/3W1pvRiOC0B2LZ/10lT+P0c/DY2wIAxAVrX8MJA7
+/z+DS2C2aLAMQElWzbMzPQBAsmbGIk1MDUCi9bAadCABQKTSKfTL3Q1AYexd
+q+EpAkCJTaAId3sOQFyS/ndEhgNAQAPGdkIWD0BHWcLdahwFQLoJ6Umopg9A
+vd1CiejSBkCTjw8wnSEQQPiVkXD08QhAq0KpbbNqEEBsk2Azxi4LQCyTGthZ
+shBAYCBYjj+gDUAnaxVkFgARQMwfdA9ySBBAg+uOIqBIEUBj/5rHgMsRQNFn
+q5SZmRFAL++xNeOlE0Dwt3AR
+                    "]]}}}, AspectRatio -> 1, Axes -> False, Background -> 
+                 GrayLevel[0.93], Frame -> True, FrameStyle -> Directive[
+                   GrayLevel[0.7], 
+                   Thickness[Tiny]], FrameTicks -> None, ImageSize -> 
+                 Dynamic[{
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], PlotRange -> {{0, 5}, {0, 5}}], 
+                GridBox[{{
+                   RowBox[{
+                    TagBox["\"Domain: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"0.`", ",", "10.`"}], "}"}], "}"}], 
+                    "SummaryItem"]}]}, {
+                   RowBox[{
+                    TagBox[
+                    "\"Output dimensions: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "2"}], "}"}], "SummaryItem"]}]}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+                 False, GridBoxItemSize -> {
+                  "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                 GridBoxSpacings -> {
+                  "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                 BaseStyle -> {
+                  ShowStringCharacters -> False, NumberMarks -> False, 
+                   PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+              BaselinePosition -> {1, 1}], True -> GridBox[{{
+                PaneBox[
+                 ButtonBox[
+                  DynamicBox[
+                   FEPrivate`FrontEndResource[
+                   "FEBitmaps", "SummaryBoxCloser"]], 
+                  ButtonFunction :> (Typeset`open$$ = False), Appearance -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+                 Dynamic[{
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
+                GraphicsBox[{{
+                   GrayLevel[0.6], 
+                   AbsolutePointSize[5], 
+                   PointBox[{1, 1}], 
+                   PointBox[{2, 4}], 
+                   PointBox[{3, 2}], 
+                   PointBox[{4, 3}]}, {{}, {}, {
+                    AbsoluteThickness[1], 
+                    Opacity[1.], 
+                    LineBox[CompressedData["
+1:eJwBMQPO/CFib1JlAgAAADIAAAACAAAA4ScLwZmZ6T/ACPskWpOYv4AjHgZ5
+3Os/cnpQh5xu1j/qWn1XCVDuP5K7ih5ptuc/r+pongFN8D/CUK87BHLxP46d
+cUQ/bPE/ujUa8/qu9j9TbqBw1aPyP/TWyyAhFfw/neDJZqDG8z+QAqdF9GsA
+QM1wGePDAfU/VsVD/9nXAkCidscSKDf2P6Bp73exDQVA/B1wDMFX9z+TpM3k
+wfUGQDzjPoyykPg/7M3Z+O7ZCEABSgjW2LT5P3pl9LwNcgpAbCYw0z/T+j86
+ypori9cLQL0gflb/Cfw/lpOs9xIqDUCTvMaj8yv9Pw4alcoYNg5AT3Y1d0Bm
+/j+pB2LLtyIPQLClAv7Nmv8/NnA5bbjSD0BLO2UnSF0AQFrcILXmpw9AsTLc
+klX5AED+sDHBQukOQNp6UGP9igFAbZ+lR/sLDkD10dd20SgCQNHi3Mj38wxA
+42MO5MXDAkAZdr6AZb8LQJRGQrZUVANArv7zEMKHCkA4OInLD/EDQLBlMO3M
+IglAnnrNRWWDBEA3d8OX6skHQNf3wBnbEgVAD3D3ndNyBkADhMcwfa4FQHOK
+7Wak/wRA8WDLrLk/BkC/MhCgYawDQNJM4msi3QZAwss/TmVLAkCGc6iEq3cH
+QIsIg92+BgFA/OprAs8HCECrPCvgePD/P2VxQsMepAhAKXVLE0Xg/j+RSBbp
+CDYJQPRz0a7WJ/4/kFqZaBPFCUDN4sX5uLj9P4J7LytKYApAvh1MbRmT/T82
+7cJSG/EKQHzT1YZwwv0/3W1pvRiOC0B2LZ/10lT+P0c/DY2wIAxAVrX8MJA7
+/z+DS2C2aLAMQElWzbMzPQBAsmbGIk1MDUCi9bAadCABQKTSKfTL3Q1AYexd
+q+EpAkCJTaAId3sOQFyS/ndEhgNAQAPGdkIWD0BHWcLdahwFQLoJ6Umopg9A
+vd1CiejSBkCTjw8wnSEQQPiVkXD08QhAq0KpbbNqEEBsk2Azxi4LQCyTGthZ
+shBAYCBYjj+gDUAnaxVkFgARQMwfdA9ySBBAg+uOIqBIEUBj/5rHgMsRQNFn
+q5SZmRFAL++xNeOlE0Dwt3AR
+                    "]]}}}, AspectRatio -> 1, Axes -> False, Background -> 
+                 GrayLevel[0.93], Frame -> True, FrameStyle -> Directive[
+                   GrayLevel[0.7], 
+                   Thickness[Tiny]], FrameTicks -> None, ImageSize -> 
+                 Dynamic[{
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], PlotRange -> {{0, 5}, {0, 5}}], 
+                GridBox[{{
+                   RowBox[{
+                    TagBox["\"Domain: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"0.`", ",", "10.`"}], "}"}], "}"}], 
+                    "SummaryItem"]}]}, {
+                   RowBox[{
+                    TagBox[
+                    "\"Output dimensions: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "2"}], "}"}], "SummaryItem"]}]}, {
+                   RowBox[{
+                    TagBox["\"Order: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["3", "SummaryItem"]}]}, {
+                   RowBox[{
+                    TagBox["\"Method: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Hermite\"", "SummaryItem"]}]}, {
+                   RowBox[{
+                    TagBox["\"Periodic: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["False", "SummaryItem"]}]}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+                 False, GridBoxItemSize -> {
+                  "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                 GridBoxSpacings -> {
+                  "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                 BaseStyle -> {
+                  ShowStringCharacters -> False, NumberMarks -> False, 
+                   PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+              BaselinePosition -> {1, 1}]}, 
+           Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+         "SummaryPanel"],
+        DynamicModuleValues:>{}], "]"}],
+      InterpolatingFunction[{{0., 10.}}, {
+       5, 3, 1, {136}, {4}, 0, 0, 0, 0, Automatic, {}, {}, 
+        False}, CompressedData["
+1:eJxFlP0zFHgAh9fakOXsLhbrZd/c9MJV8h75fmqd8V5eKlfdlF606O5SWR0q
+FxXphKy34zjd1Xg7OildXZQRoxK1W0hui9PZvK68Fq6ZfrjPzDPPzPMHfPh7
+vgvcT6VQKGofSab8vwuxZp6U5wLyyWvJYm1elu3pg2TriFF647Y48ixhvEzi
+kEQ8+z2SJmOziKWWYU1V98+Ekj0+Zlf4Kxm5EqLFelRKBvZfNA1j/0FkMXNr
+RR43yL2UUG+e5Dbp9OuvXnjSQB4/y3EdjmgkA+I5iaynhXyY23n1ln8bSbn/
+d3SAooNI9Zj6X+bJSHHIxmqnwOek/Jcjftb0blLfy3Rkn39JlLohjIQzCnLU
+etmSSY/XZMF7ajZcs58khzeN9Db/Q1jJWX1ByW9IweW9nS2eg+Shf8Wl+Mi3
+ZH7q3bdr0obJqqL16/qrR0mVsJH6cHCMNMcc+Pfz9+NE8YDedlJngsxwq2u6
+zN8RxtHgPNvVk8Suc0VKafoU+cp18RhXNU1OFMvE0qBZUkIrC6HXzpH74pOe
+P7A/kLcPg52mY+YJw2bl8m+6Fkh+62JqlDkFFfHKROs2Cu6skse9OaGGDkX9
+kZLVVPRllkV+raBi0l261zhDHVrTJ3c83UADpzQiKE1Fg/WOLT5el5bATRci
+WrAGNtevdKmnaWJvlKFtbK0mooUUK/swLZyVKwVj7KXIPyvnlDcvRYVzAyvs
+mDbuvC3T5q+go71QSu3pouP1poS57HM6mFSLVAW46ELz2halzpAuTMLwurng
+M1gbW3Wf8tODW6vhk/ULeljuRtkfv40Bm5xJRVcVA+vGlDsdtZgQeSk6s3Yz
+4VsiD1bVMbH1fWv7JiYLu4IbfCvDWRBX1rZo32MhSqPcXczRR+yu4oamw/pI
+rJO6Ch/o4zwztS5BaIDsiAS73jgD2LtszEh9aQAZnTbiRAxxtKfJe6DYEAaV
+Z69cpLJRc9yLtmEfG4H+9NCRJjZUFo/++mmZETJH0zheKUawadgcM6U0Qns6
+S3bJ1xiHQmVrAn43BmNt9o8LeiYwyTN0viY2gYAi7Q+/awLrAwbpXA4H9m0X
+XeSHOXCz139z7gEHngWZmbA0RYA6y20q3hTbIzIGy+Wm2NfBkIauMkNQ1Pqh
+9iQziJgRIrwwg+3V7PwqG3MIAxrHLZLNoT8+6pnWaw71DLPieTsLTKzxmj6Y
+aoG+9mj/nlcWeHqo5DcfJy5qW11Idw4XOZbyTvE0F67E8WacFQ9fDKlriHbw
+YJHXHqidyoOeR2FRx588qE2ED+UqeVAVOTjv5vDR56t+Zpk3H7LZx09Gvuej
+6XIB93opH9eDwg8e7+LjCsXhpvtSAXIrqRo6zgKkbH8c+FQsQKxmQVF+rgCR
+18RDoS0C7Ay1d14xI8B8RUPubYEQRTM+M5v8hID78219MUK8urDnhqREiMQX
+w2ztR0LcHZbQTw987JJbpzdOCPHpNSzxH9cH3Gs=
+       "], {{{{
+           Complex[1., 0.], 
+           Complex[0., 0.]}, {
+           Complex[0., 0.], 
+           Complex[1., 0.]}}, {{
+           Complex[0., 0.], 
+           Complex[0., -1.]}, {
+           Complex[0., -1.], 
+           Complex[0., 0.]}}}, {{{
+           Complex[0.9999999793397806, 0.], 
+           Complex[0., -0.00014373662921380657`]}, {
+           Complex[0., -0.00014373662921380657`], 
+           Complex[0.9999999793397806, 0.]}}, {{
+           Complex[-0.00014373663069862174`, 0.], 
+           Complex[0., -0.9999999690096707]}, {
+           Complex[0., -0.9999999690096707], 
+           Complex[-0.00014373663069862174`, 0.]}}}, {{{
+           Complex[0.999999938019345, 0.], 
+           Complex[0., -0.0002874732480339074]}, {
+           Complex[0., -0.0002874732480339074], 
+           Complex[0.999999938019345, 0.]}}, {{
+           Complex[-0.0002874732391250163, 0.], 
+           Complex[0., -0.9999998966989071]}, {
+           Complex[0., -0.9999998966989071], 
+           Complex[-0.0002874732391250163, 0.]}}}, {{{
+           Complex[0.9999939190387782, 0.], 
+           Complex[0., -0.00348146459413946]}, {
+           Complex[0., -0.00348146459413946], 
+           Complex[0.9999939190387782, 0.]}}, {{
+           Complex[-0.003481443495151348, 0.], 
+           Complex[0., -0.999987858689142]}, {
+           Complex[0., -0.999987858689142], 
+           Complex[-0.003481443495151348, 0.]}}}, {{{
+           Complex[0.9999776987659902, 0.], 
+           Complex[0., -0.006675384907802118]}, {
+           Complex[0., -0.006675384907802118], 
+           Complex[0.9999776987659902, 0.]}}, {{
+           Complex[-0.006675236172951124, 0.], 
+           Complex[0., -0.9999554181763849]}, {
+           Complex[0., -0.9999554181763849], 
+           Complex[-0.006675236172951124, 0.]}}}, {{{
+           Complex[0.9999512780283308, 0.], 
+           Complex[0., -0.009869169026414708]}, {
+           Complex[0., -0.009869169026414708], 
+           Complex[0.9999512780283308, 0.]}}, {{
+           Complex[-0.009868688365726725, 0.], 
+           Complex[0., -0.9999025771705141]}, {
+           Complex[0., -0.9999025771705141], 
+           Complex[-0.009868688365726725, 0.]}}}, {{{
+           Complex[0.9998000085465623, 0.], 
+           Complex[0., -0.019997645752310486`]}, {
+           Complex[0., -0.019997645752310486`], 
+           Complex[0.9998000085465623, 0.]}}, {{
+           Complex[-0.01999364619639805, 0.], 
+           Complex[0., -0.999600048605033]}, {
+           Complex[0., -0.999600048605033], 
+           Complex[-0.01999364619639805, 0.]}}}, {{{
+           Complex[0.9995462134796378, 0.], 
+           Complex[0., -0.03012199171055006]}, {
+           Complex[0., -0.03012199171055006], 
+           Complex[0.9995462134796378, 0.]}}, {{
+           Complex[-0.030108319040036958`, 0.], 
+           Complex[0., -0.999092512871102]}, {
+           Complex[0., -0.999092512871102], 
+           Complex[-0.030108319040036958`, 0.]}}}, {{{
+           Complex[0.9991900226036616, 0.], 
+           Complex[0., -0.04024015878749869]}, {
+           Complex[0., -0.04024015878749869], 
+           Complex[0.9991900226036616, 0.]}}, {{
+           Complex[-0.040207548050076716`, 0.], 
+           Complex[0., -0.9983802784943301]}, {
+           Complex[0., -0.9983802784943301], 
+           Complex[-0.040207548050076716`, 0.]}}}, {{{
+           Complex[0.9987316185747204, 0.], 
+           Complex[0., -0.05035007534251993]}, {
+           Complex[0., -0.05035007534251993], 
+           Complex[0.9987316185747204, 0.]}}, {{
+           Complex[-0.050286158707640395`, 0.], 
+           Complex[0., -0.9974637858750324]}, {
+           Complex[0., -0.9974637858750324], 
+           Complex[-0.050286158707640395`, 0.]}}}, {{{
+           Complex[0.9975091588548425, 0.], 
+           Complex[0., -0.07053689734519711]}, {
+           Complex[0., -0.07053689734519711], 
+           Complex[0.9975091588548425, 0.]}}, {{
+           Complex[-0.0703609087308779, 0.], 
+           Complex[0., -0.9950203981108489]}, {
+           Complex[0., -0.9950203981108489], 
+           Complex[-0.0703609087308779, 0.]}}}, {{{
+           Complex[0.9958813378022026, 0.], 
+           Complex[0., -0.09066600781892777]}, {
+           Complex[0., -0.09066600781892777], 
+           Complex[0.9958813378022026, 0.]}}, {{
+           Complex[-0.09029155745425052, 0.], 
+           Complex[0., -0.9917683461500668]}, {
+           Complex[0., -0.9917683461500668], 
+           Complex[-0.09029155745425052, 0.]}}}, {{{
+           Complex[0.9938514987309274, 0.], 
+           Complex[0., -0.11072110030931442`]}, {
+           Complex[0., -0.11072110030931442`], 
+           Complex[0.9938514987309274, 0.]}}, {{
+           Complex[-0.11003752517467723`, 0.], 
+           Complex[0., -0.9877156079580813]}, {
+           Complex[0., -0.9877156079580813], 
+           Complex[-0.11003752517467723`, 0.]}}}, {{{
+           Complex[0.9914237842356818, 0.], 
+           Complex[0., -0.1306860481917193]}, {
+           Complex[0., -0.1306860481917193], 
+           Complex[0.9914237842356818, 0.]}}, {{
+           Complex[-0.12955879175739726`, 0.], 
+           Complex[0., -0.9828720767518659]}, {
+           Complex[0., -0.9828720767518659], 
+           Complex[-0.12955879175739726`, 0.]}}}, {{{
+           Complex[0.9886031469491141, 0.], 
+           Complex[0., -0.15054494498673507`]}, {
+           Complex[0., -0.15054494498673507`], 
+           Complex[0.9886031469491141, 0.]}}, {{
+           Complex[-0.1488160126757776, 0.], 
+           Complex[0., -0.9772495412576874]}, {
+           Complex[0., -0.9772495412576874], 
+           Complex[-0.1488160126757776, 0.]}}}, {{{
+           Complex[0.9814293567147071, 0.], 
+           Complex[0., -0.19182379891576173`]}, {
+           Complex[0., -0.19182379891576173`], 
+           Complex[0.9814293567147071, 0.]}}, {{
+           Complex[-0.18821651564728764`, 0.], 
+           Complex[0., -0.962973387340263]}, {
+           Complex[0., -0.962973387340263], 
+           Complex[-0.18821651564728764`, 0.]}}}, {{{
+           Complex[0.9726139966423824, 0.], 
+           Complex[0., -0.23242624931209718`]}, {
+           Complex[0., -0.23242624931209718`], 
+           Complex[0.9726139966423824, 0.]}}, {{
+           Complex[-0.2259412952984063, 0.], 
+           Complex[0., -0.9454769671933614]}, {
+           Complex[0., -0.9454769671933614], 
+           Complex[-0.2259412952984063, 0.]}}}, {{{
+           Complex[0.962235254230938, 0.], 
+           Complex[0., -0.2722191336332079]}, {
+           Complex[0., -0.2722191336332079], 
+           Complex[0.962235254230938, 0.]}}, {{
+           Complex[-0.26166905207904834`, 0.], 
+           Complex[0., -0.9249430142270455]}, {
+           Complex[0., -0.9249430142270455], 
+           Complex[-0.26166905207904834`, 0.]}}}, {{{
+           Complex[0.9503844731952195, 0.], 
+           Complex[0., -0.3110776224555665]}, {
+           Complex[0., -0.3110776224555665], 
+           Complex[0.9503844731952195, 0.]}}, {{
+           Complex[-0.29510388437680485`, 0.], 
+           Complex[0., -0.9015825265307659]}, {
+           Complex[0., -0.9015825265307659], 
+           Complex[-0.29510388437680485`, 0.]}}}, {{{
+           Complex[0.9371649826502432, 0.], 
+           Complex[0., -0.3488864040541216]}, {
+           Complex[0., -0.3488864040541216], 
+           Complex[0.9371649826502432, 0.]}}, {{
+           Complex[-0.3259785636293996, 0.], 
+           Complex[0., -0.875630837198393]}, {
+           Complex[0., -0.875630837198393], 
+           Complex[-0.3259785636293996, 0.]}}}, {{{
+           Complex[0.9226908206325384, 0.], 
+           Complex[0., -0.3855406220609556]}, {
+           Complex[0., -0.3855406220609556], 
+           Complex[0.9226908206325384, 0.]}}, {{
+           Complex[-0.35405716645397933`, 0.], 
+           Complex[0., -0.847343387475273]}, {
+           Complex[0., -0.847343387475273], 
+           Complex[-0.35405716645397933`, 0.]}}}, {{{
+           Complex[0.9024174466080129, 0.], 
+           Complex[0., -0.43086269541886524`]}, {
+           Complex[0., -0.43086269541886524`], 
+           Complex[0.9024174466080129, 0.]}}, {{
+           Complex[-0.3857546167854185, 0.], 
+           Complex[0., -0.8079411335008707]}, {
+           Complex[0., -0.8079411335008707], 
+           Complex[-0.3857546167854185, 0.]}}}, {{{
+           Complex[0.8805528465035283, 0.], 
+           Complex[0., -0.4739479035401053]}, {
+           Complex[0., -0.4739479035401053], 
+           Complex[0.8805528465035283, 0.]}}, {{
+           Complex[-0.41214187050761597`, 0.], 
+           Complex[0., -0.765722759507943]}, {
+           Complex[0., -0.765722759507943], 
+           Complex[-0.41214187050761597`, 0.]}}}, {{{
+           Complex[0.8573949924262341, 0.], 
+           Complex[0., -0.514658884855897]}, {
+           Complex[0., -0.514658884855897], 
+           Complex[0.8573949924262341, 0.]}}, {{
+           Complex[-0.4329688721700577, 0.], 
+           Complex[0., -0.7213036762581904]}, {
+           Complex[0., -0.7213036762581904], 
+           Complex[-0.4329688721700577, 0.]}}}, {{{
+           Complex[0.8332529112338498, 0.], 
+           Complex[0., -0.5528919710248705]}, {
+           Complex[0., -0.5528919710248705], 
+           Complex[0.8332529112338498, 0.]}}, {{
+           Complex[-0.44808204119116013`, 0.], 
+           Complex[0., -0.6752958734469582]}, {
+           Complex[0., -0.6752958734469582], 
+           Complex[-0.44808204119116013`, 0.]}}}, {{{
+           Complex[0.8084414641891006, 0.], 
+           Complex[0., -0.5885765445162036]}, {
+           Complex[0., -0.5885765445162036], 
+           Complex[0.8084414641891006, 0.]}}, {{
+           Complex[-0.4574210379580141, 0.], 
+           Complex[0., -0.6282923396784845]}, {
+           Complex[0., -0.6282923396784845], 
+           Complex[-0.4574210379580141, 0.]}}}, {{{
+           Complex[0.7832763822887046, 0.], 
+           Complex[0., -0.6216735982920004]}, {
+           Complex[0., -0.6216735982920004], 
+           Complex[0.7832763822887046, 0.]}}, {{
+           Complex[-0.46101332041075177`, 0.], 
+           Complex[0., -0.580852793565499]}, {
+           Complex[0., -0.580852793565499], 
+           Complex[-0.46101332041075177`, 0.]}}}, {{{
+           Complex[0.7580696528738722, 0.], 
+           Complex[0., -0.6521735651256629]}, {
+           Complex[0., -0.6521735651256629], 
+           Complex[0.7580696528738722, 0.]}}, {{
+           Complex[-0.4589668397621856, 0.], 
+           Complex[0., -0.5334911623474484]}, {
+           Complex[0., -0.5334911623474484], 
+           Complex[-0.4589668397621856, 0.]}}}, {{{
+           Complex[0.7277248825322106, 0.], 
+           Complex[0., -0.6858691284536934]}, {
+           Complex[0., -0.6858691284536934], 
+           Complex[0.7277248825322106, 0.]}}, {{
+           Complex[-0.4491109409082515, 0.], 
+           Complex[0., -0.47651832384332093`]}, {
+           Complex[0., -0.47651832384332093`], 
+           Complex[-0.4491109409082515, 0.]}}}, {{{
+           Complex[0.6982963014383404, 0.], 
+           Complex[0., -0.7158087965157148]}, {
+           Complex[0., -0.7158087965157148], 
+           Complex[0.6982963014383404, 0.]}}, {{
+           Complex[-0.4315943536905096, 0.], 
+           Complex[0., -0.42103525817676324`]}, {
+           Complex[0., -0.42103525817676324`], 
+           Complex[-0.4315943536905096, 0.]}}}, {{{
+           Complex[0.6702770554849935, 0.], 
+           Complex[0., -0.7421109211740593]}, {
+           Complex[0., -0.7421109211740593], 
+           Complex[0.6702770554849935, 0.]}}, {{
+           Complex[-0.40697578359509673`, 0.], 
+           Complex[0., -0.36758188215456133`]}, {
+           Complex[0., -0.36758188215456133`], 
+           Complex[-0.40697578359509673`, 0.]}}}, {{{
+           Complex[0.6441200664124916, 0.], 
+           Complex[0., -0.7649243667921648]}, {
+           Complex[0., -0.7649243667921648], 
+           Complex[0.6441200664124916, 0.]}}, {{
+           Complex[-0.37589749548250745`, 0.], 
+           Complex[0., -0.3165321041000934]}, {
+           Complex[0., -0.3165321041000934], 
+           Complex[-0.37589749548250745`, 0.]}}}, {{{
+           Complex[0.6202333017776932, 0.], 
+           Complex[0., -0.7844173610203037]}, {
+           Complex[0., -0.7844173610203037], 
+           Complex[0.6202333017776932, 0.]}}, {{
+           Complex[-0.3390604795584766, 0.], 
+           Complex[0., -0.2680927412131512]}, {
+           Complex[0., -0.2680927412131512], 
+           Complex[-0.3390604795584766, 0.]}}}, {{{
+           Complex[0.5989766038481642, 0.], 
+           Complex[0., -0.800766489715247]}, {
+           Complex[0., -0.800766489715247], 
+           Complex[0.5989766038481642, 0.]}}, {{
+           Complex[-0.29720268395601374`, 0.], 
+           Complex[0., -0.22230882098721116`]}, {
+           Complex[0., -0.22230882098721116`], 
+           Complex[-0.29720268395601374`, 0.]}}}, {{{
+           Complex[0.5806598423662692, 0.], 
+           Complex[0., -0.8141462330985481]}, {
+           Complex[0., -0.8141462330985481], 
+           Complex[0.5806598423662692, 0.]}}, {{
+           Complex[-0.25108118390775835`, 0.], 
+           Complex[0., -0.1790744152480422]}, {
+           Complex[0., -0.1790744152480422], 
+           Complex[-0.25108118390775835`, 0.]}}}, {{{
+           Complex[0.565542110394315, 0.], 
+           Complex[0., -0.824719383475328]}, {
+           Complex[0., -0.824719383475328], 
+           Complex[0.565542110394315, 0.]}}, {{
+           Complex[-0.2014587561283023, 0.], 
+           Complex[0., -0.1381480929805767]}, {
+           Complex[0., -0.1381480929805767], 
+           Complex[-0.2014587561283023, 0.]}}}, {{{
+           Complex[0.5510694864064295, 0.], 
+           Complex[0., -0.8344593173266863]}, {
+           Complex[0., -0.8344593173266863], 
+           Complex[0.5510694864064295, 0.]}}, {{
+           Complex[-0.13333864887218122`, 0.], 
+           Complex[0., -0.08805565375726224]}, {
+           Complex[0., -0.08805565375726224], 
+           Complex[-0.13333864887218122`, 0.]}}}, {{{
+           Complex[0.5426146164321262, 0.], 
+           Complex[0., -0.8399817287159695]}, {
+           Complex[0., -0.8399817287159695], 
+           Complex[0.5426146164321262, 0.]}}, {{
+           Complex[-0.062256301225399095`, 0.], 
+           Complex[0., -0.04021656404892539]}, {
+           Complex[0., -0.04021656404892539], 
+           Complex[-0.062256301225399095`, 0.]}}}, {{{
+           Complex[0.5403639903188832, 0.], 
+           Complex[0., -0.841431329641711]}, {
+           Complex[0., -0.841431329641711], 
+           Complex[0.5403639903188832, 0.]}}, {{
+           Complex[0.010189343903026121`, 0.], 
+           Complex[0., 0.006543557788308353]}, {
+           Complex[0., 0.006543557788308353], 
+           Complex[0.010189343903026121`, 0.]}}}, {{{
+           Complex[0.5443667967721743, 0.], 
+           Complex[0., -0.8388472543485905]}, {
+           Complex[0., -0.8388472543485905], 
+           Complex[0.5443667967721743, 0.]}}, {{
+           Complex[0.08241272539130093, 0.], 
+           Complex[0., 0.053481430745474436`]}, {
+           Complex[0., 0.053481430745474436`], 
+           Complex[0.08241272539130093, 0.]}}}, {{{
+           Complex[0.5545354187016647, 0.], 
+           Complex[0., -0.8321600792379897]}, {
+           Complex[0., -0.8321600792379897], 
+           Complex[0.5545354187016647, 0.]}}, {{
+           Complex[0.1528259809953819, 0.], 
+           Complex[0., 0.10184028464507835`]}, {
+           Complex[0., 0.10184028464507835`], 
+           Complex[0.1528259809953819, 0.]}}}, {{{
+           Complex[0.5706445684400765, 0.], 
+           Complex[0., -0.8211971184774898]}, {
+           Complex[0., -0.8211971184774898], 
+           Complex[0.5706445684400765, 0.]}}, {{
+           Complex[0.21982423244724023`, 0.], 
+           Complex[0., 0.15275443782367862`]}, {
+           Complex[0., 0.15275443782367862`], 
+           Complex[0.21982423244724023`, 0.]}}}, {{{
+           Complex[0.5923294382894407, 0.], 
+           Complex[0., -0.8056958291910448]}, {
+           Complex[0., -0.8056958291910448], 
+           Complex[0.5923294382894407, 0.]}}, {{
+           Complex[0.28177856968791265`, 0.], 
+           Complex[0., 0.20715726172113869`]}, {
+           Complex[0., 0.20715726172113869`], 
+           Complex[0.28177856968791265`, 0.]}}}, {{{
+           Complex[0.6190837961188161, 0.], 
+           Complex[0., -0.7853248916841512]}, {
+           Complex[0., -0.7853248916841512], 
+           Complex[0.6190837961188161, 0.]}}, {{
+           Complex[0.33704267783566516`, 0.], 
+           Complex[0., 0.26569597183730775`]}, {
+           Complex[0., 0.26569597183730775`], 
+           Complex[0.33704267783566516`, 0.]}}}, {{{
+           Complex[0.6502594094472152, 0.], 
+           Complex[0., -0.7597122012886575]}, {
+           Complex[0., -0.7597122012886575], 
+           Complex[0.6502594094472152, 0.]}}, {{
+           Complex[0.38397759300855727`, 0.], 
+           Complex[0., 0.32865740799968773`]}, {
+           Complex[0., 0.32865740799968773`], 
+           Complex[0.38397759300855727`, 0.]}}}, {{{
+           Complex[0.6850684834225024, 0.], 
+           Complex[0., -0.728478615914339]}, {
+           Complex[0., -0.728478615914339], 
+           Complex[0.6850684834225024, 0.]}}, {{
+           Complex[0.4209969968998997, 0.], 
+           Complex[0., 0.3959097334519537]}, {
+           Complex[0., 0.3959097334519537], 
+           Complex[0.4209969968998997, 0.]}}}, {{{
+           Complex[0.7225908975220702, 0.], 
+           Complex[0., -0.6912758524979172]}, {
+           Complex[0., -0.6912758524979172], 
+           Complex[0.7225908975220702, 0.]}}, {{
+           Complex[0.4466328740053013, 0.], 
+           Complex[0., 0.46686550573039554`]}, {
+           Complex[0., 0.46686550573039554`], 
+           Complex[0.4466328740053013, 0.]}}}, {{{
+           Complex[0.7617878865924517, 0.], 
+           Complex[0., -0.6478264508893052]}, {
+           Complex[0., -0.6478264508893052], 
+           Complex[0.7617878865924517, 0.]}}, {{
+           Complex[0.4596184481874023, 0.], 
+           Complex[0., 0.5404715537284449]}, {
+           Complex[0., 0.5404715537284449], 
+           Complex[0.4596184481874023, 0.]}}}, {{{
+           Complex[0.8015234176390513, 0.], 
+           Complex[0., -0.597963283470136]}, {
+           Complex[0., -0.597963283470136], 
+           Complex[0.8015234176390513, 0.]}}, {{
+           Complex[0.45898236710108836`, 0.], 
+           Complex[0., 0.6152302808582585]}, {
+           Complex[0., 0.6152302808582585], 
+           Complex[0.45898236710108836`, 0.]}}}, {{{
+           Complex[0.8405938762002964, 0.], 
+           Complex[0., -0.5416657589914153]}, {
+           Complex[0., -0.5416657589914153], 
+           Complex[0.8405938762002964, 0.]}}, {{
+           Complex[0.444145476238218, 0.], 
+           Complex[0., 0.6892552569480764]}, {
+           Complex[0., 0.6892552569480764], 
+           Complex[0.444145476238218, 0.]}}}, {{{
+           Complex[0.8777658403952311, 0.], 
+           Complex[0., -0.47908973181390185`]}, {
+           Complex[0., -0.47908973181390185`], 
+           Complex[0.8777658403952311, 0.]}}, {{
+           Complex[0.4150096269805106, 0.], 
+           Complex[0., 0.7603612748792385]}, {
+           Complex[0., 0.7603612748792385], 
+           Complex[0.4150096269805106, 0.]}}}, {{{
+           Complex[0.9118207670308, 0.], 
+           Complex[0., -0.41058825569869073`]}, {
+           Complex[0., -0.41058825569869073`], 
+           Complex[0.9118207670308, 0.]}}, {{
+           Complex[0.3720271860409283, 0.], 
+           Complex[0., 0.8261856373584374]}, {
+           Complex[0., 0.8261856373584374], 
+           Complex[0.3720271860409283, 0.]}}}, {{{
+           Complex[0.9416044528650398, 0.], 
+           Complex[0., -0.3367207612235885]}, {
+           Complex[0., -0.3367207612235885], 
+           Complex[0.9416044528650398, 0.]}}, {{
+           Complex[0.316240551211201, 0.], 
+           Complex[0., 0.8843336993341468]}, {
+           Complex[0., 0.8843336993341468], 
+           Complex[0.316240551211201, 0.]}}}, {{{
+           Complex[0.966078293893537, 0.], 
+           Complex[0., -0.25824899370714527`]}, {
+           Complex[0., -0.25824899370714527`], 
+           Complex[0.966078293893537, 0.]}}, {{
+           Complex[0.24928314756984557`, 0.], 
+           Complex[0., 0.9325381620375722]}, {
+           Complex[0., 0.9325381620375722], 
+           Complex[0.24928314756984557`, 0.]}}}, {{{
+           Complex[0.9843687752065196, 0.], 
+           Complex[0., -0.1761190802181294]}, {
+           Complex[0., -0.1761190802181294], 
+           Complex[0.9843687752065196, 0.]}}, {{
+           Complex[0.17333695965281443`, 0.], 
+           Complex[0., 0.9688188954295953]}, {
+           Complex[0., 0.9688188954295953], 
+           Complex[0.17333695965281443`, 0.]}}}, {{{
+           Complex[0.9958113909947233, 0.], 
+           Complex[0., -0.09143030545647904]}, {
+           Complex[0., -0.09143030545647904], 
+           Complex[0.9958113909947233, 0.]}}, {{
+           Complex[0.09104627308265782, 0.], 
+           Complex[0., 0.9916287049430969]}, {
+           Complex[0., 0.9916287049430969], 
+           Complex[0.09104627308265782, 0.]}}}, {{{
+           Complex[0.999985383694275, 0.], 
+           Complex[0., -0.005392431869425731]}, {
+           Complex[0., -0.005392431869425731], 
+           Complex[0.999985383694275, 0.]}}, {{
+           Complex[0.005392356687303853, 0.], 
+           Complex[0., 0.9999708340998209]}, {
+           Complex[0., 0.9999708340998209], 
+           Complex[0.005392356687303853, 0.]}}}, {{{
+           Complex[0.9967363099903839, 0.], 
+           Complex[0., 0.08072545757282236]}, {
+           Complex[0., 0.08072545757282236], 
+           Complex[0.9967363099903839, 0.]}}, {{
+           Complex[-0.08046141756809065, 0.], 
+           Complex[0., 0.9934762199985017]}, {
+           Complex[0., 0.9934762199985017], 
+           Complex[-0.08046141756809065, 0.]}}}, {{{
+           Complex[0.9861844320519053, 0.], 
+           Complex[0., 0.16565073826057727`]}, {
+           Complex[0., 0.16565073826057727`], 
+           Complex[0.9861844320519053, 0.]}}, {{
+           Complex[-0.16334078146939465`, 0.], 
+           Complex[0., 0.9724323944264396]}, {
+           Complex[0., 0.9724323944264396], 
+           Complex[-0.16334078146939465`, 0.]}}}, {{{
+           Complex[0.9687181787602901, 0.], 
+           Complex[0., 0.2481633003072472]}, {
+           Complex[0., 0.2481633003072472], 
+           Complex[0.9687181787602901, 0.]}}, {{
+           Complex[-0.2402327619446264, 0.], 
+           Complex[0., 0.9377609542165264]}, {
+           Complex[0., 0.9377609542165264], 
+           Complex[-0.2402327619446264, 0.]}}}, {{{
+           Complex[0.9449732658997235, 0.], 
+           Complex[0., 0.3271475086538848]}, {
+           Complex[0., 0.3271475086538848], 
+           Complex[0.9449732658997235, 0.]}}, {{
+           Complex[-0.3084433866724363, 0.], 
+           Complex[0., 0.8909460009347351]}, {
+           Complex[0., 0.8909460009347351], 
+           Complex[-0.3084433866724363, 0.]}}}, {{{
+           Complex[0.9157993321468121, 0.], 
+           Complex[0., 0.40163612684781147`]}, {
+           Complex[0., 0.40163612684781147`], 
+           Complex[0.9157993321468121, 0.]}}, {{
+           Complex[-0.3657273059392609, 0.], 
+           Complex[0., 0.8339210784887617]}, {
+           Complex[0., 0.8339210784887617], 
+           Complex[-0.3657273059392609, 0.]}}}, {{{
+           Complex[0.8822169777599489, 0.], 
+           Complex[0., 0.4708430988994506]}, {
+           Complex[0., 0.4708430988994506], 
+           Complex[0.8822169777599489, 0.]}}, {{
+           Complex[-0.41037929566921105`, 0.], 
+           Complex[0., 0.7689261899261032]}, {
+           Complex[0., 0.7689261899261032], 
+           Complex[-0.41037929566921105`, 0.]}}}, {{{
+           Complex[0.8453687625672474, 0.], 
+           Complex[0., 0.534183201464481]}, {
+           Complex[0., 0.534183201464481], 
+           Complex[0.8453687625672474, 0.]}}, {{
+           Complex[-0.44128228320204105`, 0.], 
+           Complex[0., 0.698348923845002]}, {
+           Complex[0., 0.698348923845002], 
+           Complex[-0.44128228320204105`, 0.]}}}, {{{
+           Complex[0.8064679638834223, 0.], 
+           Complex[0., 0.5912778288895869]}, {
+           Complex[0., 0.5912778288895869], 
+           Complex[0.8064679638834223, 0.]}}, {{
+           Complex[-0.45791159997891084`, 0.], 
+           Complex[0., 0.6245643277889227]}, {
+           Complex[0., 0.6245643277889227], 
+           Complex[-0.45791159997891084`, 0.]}}}, {{{
+           Complex[0.7667487123499663, 0.], 
+           Complex[0., 0.6419473984926354]}, {
+           Complex[0., 0.6419473984926354], 
+           Complex[0.7667487123499663, 0.]}}, {{
+           Complex[-0.4602998747182322, 0.], 
+           Complex[0., 0.5497870061780303]}, {
+           Complex[0., 0.5497870061780303], 
+           Complex[-0.4602998747182322, 0.]}}}, {{{
+           Complex[0.7274205728515111, 0.], 
+           Complex[0., 0.6861919237464833]}, {
+           Complex[0., 0.6861919237464833], 
+           Complex[0.7274205728515111, 0.]}}, {{
+           Complex[-0.44897071728348387`, 0.], 
+           Complex[0., 0.47594634332861313`]}, {
+           Complex[0., 0.47594634332861313`], 
+           Complex[-0.44897071728348387`, 0.]}}}, {{{
+           Complex[0.6896298218387805, 0.], 
+           Complex[0., 0.7241620985827724]}, {
+           Complex[0., 0.7241620985827724], 
+           Complex[0.6896298218387805, 0.]}}, {{
+           Complex[-0.42485170104418474`, 0.], 
+           Complex[0., 0.40459229093853727`]}, {
+           Complex[0., 0.40459229093853727`], 
+           Complex[-0.42485170104418474`, 0.]}}}, {{{
+           Complex[0.6544287189737141, 0.], 
+           Complex[0., 0.7561237163593855]}, {
+           Complex[0., 0.7561237163593855], 
+           Complex[0.6544287189737141, 0.]}}, {{
+           Complex[-0.3891779785523443, 0.], 
+           Complex[0., 0.33683541405742295`]}, {
+           Complex[0., 0.33683541405742295`], 
+           Complex[-0.3891779785523443, 0.]}}}, {{{
+           Complex[0.6227531097788348, 0.], 
+           Complex[0., 0.782418412159327]}, {
+           Complex[0., 0.782418412159327], 
+           Complex[0.6227531097788348, 0.]}}, {{
+           Complex[-0.3433972519598567, 0.], 
+           Complex[0., 0.2733214125705108]}, {
+           Complex[0., 0.2733214125705108], 
+           Complex[-0.3433972519598567, 0.]}}}, {{{
+           Complex[0.5954078403768432, 0.], 
+           Complex[0., 0.8034236093346093]}, {
+           Complex[0., 0.8034236093346093], 
+           Complex[0.5954078403768432, 0.]}}, {{
+           Complex[-0.28908504202316304`, 0.], 
+           Complex[0., 0.21423754275053397`]}, {
+           Complex[0., 0.21423754275053397`], 
+           Complex[-0.28908504202316304`, 0.]}}}, {{{
+           Complex[0.5730587998412225, 0.], 
+           Complex[0., 0.8195142409876903]}, {
+           Complex[0., 0.8195142409876903], 
+           Complex[0.5730587998412225, 0.]}}, {{
+           Complex[-0.22787664122341372`, 0.], 
+           Complex[0., 0.15934648549366023`]}, {
+           Complex[0., 0.15934648549366023`], 
+           Complex[-0.22787664122341372`, 0.]}}}, {{{
+           Complex[0.556229979767173, 0.], 
+           Complex[0., 0.8310283862135428]}, {
+           Complex[0., 0.8310283862135428], 
+           Complex[0.556229979767173, 0.]}}, {{
+           Complex[-0.16141920725594122`, 0.], 
+           Complex[0., 0.10804228074106141`]}, {
+           Complex[0., 0.10804228074106141`], 
+           Complex[-0.16141920725594122`, 0.]}}}, {{{
+           Complex[0.5453037699749232, 0.], 
+           Complex[0., 0.8382384869043493]}, {
+           Complex[0., 0.8382384869043493], 
+           Complex[0.5453037699749232, 0.]}}, {{
+           Complex[-0.09134452356633695, 0.], 
+           Complex[0., 0.05942284183125538]}, {
+           Complex[0., 0.05942284183125538], 
+           Complex[-0.09134452356633695, 0.]}}}, {{{
+           Complex[0.5405227805738114, 0.], 
+           Complex[0., 0.8413293547160169]}, {
+           Complex[0., 0.8413293547160169], 
+           Complex[0.5405227805738114, 0.]}}, {{
+           Complex[-0.01926031527798794, 0.], 
+           Complex[0., 0.012374035339707197`]}, {
+           Complex[0., 0.012374035339707197`], 
+           Complex[-0.01926031527798794, 0.]}}}, {{{
+           Complex[0.5419917595422439, 0.], 
+           Complex[0., 0.8403837766071987]}, {
+           Complex[0., 0.8403837766071987], 
+           Complex[0.5419917595422439, 0.]}}, {{
+           Complex[0.053244138441775515`, 0.], 
+           Complex[0., -0.03433893547973342]}, {
+           Complex[0., -0.03433893547973342], 
+           Complex[0.053244138441775515`, 0.]}}}, {{{
+           Complex[0.5496786135453807, 0.], 
+           Complex[0., 0.8353761926458837]}, {
+           Complex[0., 0.8353761926458837], 
+           Complex[0.5496786135453807, 0.]}}, {{
+           Complex[0.12458389319630547`, 0.], 
+           Complex[0., -0.08197636260233805]}, {
+           Complex[0., -0.08197636260233805], 
+           Complex[0.12458389319630547`, 0.]}}}, {{{
+           Complex[0.5634140825656143, 0.], 
+           Complex[0., 0.8261746400462681]}, {
+           Complex[0., 0.8261746400462681], 
+           Complex[0.5634140825656143, 0.]}}, {{
+           Complex[0.1931623992932764, 0.], 
+           Complex[0., -0.1317281003987673]}, {
+           Complex[0., -0.1317281003987673], 
+           Complex[0.1931623992932764, 0.]}}}, {{{
+           Complex[0.5828902074199196, 0.], 
+           Complex[0., 0.812550904697284]}, {
+           Complex[0., 0.812550904697284], 
+           Complex[0.5828902074199196, 0.]}}, {{
+           Complex[0.2573605865457583, 0.], 
+           Complex[0., -0.1846197754258017]}, {
+           Complex[0., -0.1846197754258017], 
+           Complex[0.2573605865457583, 0.]}}}, {{{
+           Complex[0.6076583037097254, 0.], 
+           Complex[0., 0.794198560245438]}, {
+           Complex[0., 0.794198560245438], 
+           Complex[0.6076583037097254, 0.]}}, {{
+           Complex[0.31553731934595636`, 0.], 
+           Complex[0., -0.24142435112202434`]}, {
+           Complex[0., -0.24142435112202434`], 
+           Complex[0.31553731934595636`, 0.]}}}, {{{
+           Complex[0.6404783470255629, 0.], 
+           Complex[0., 0.7679762043257373]}, {
+           Complex[0., 0.7679762043257373], 
+           Complex[0.6404783470255629, 0.]}}, {{
+           Complex[0.3708559193120883, 0.], 
+           Complex[0., -0.309287168980333]}, {
+           Complex[0., -0.309287168980333], 
+           Complex[0.3708559193120883, 0.]}}}, {{{
+           Complex[0.6780414729340436, 0.], 
+           Complex[0., 0.7350236145660087]}, {
+           Complex[0., 0.7350236145660087], 
+           Complex[0.6780414729340436, 0.]}}, {{
+           Complex[0.41463213513575453`, 0.], 
+           Complex[0., -0.38248809789934113`]}, {
+           Complex[0., -0.38248809789934113`], 
+           Complex[0.41463213513575453`, 0.]}}}, {{{
+           Complex[0.7191482918508302, 0.], 
+           Complex[0., 0.6948565862634865]}, {
+           Complex[0., 0.6948565862634865], 
+           Complex[0.7191482918508302, 0.]}}, {{
+           Complex[0.44483700383063823`, 0.], 
+           Complex[0., -0.4603882010703185]}, {
+           Complex[0., -0.4603882010703185], 
+           Complex[0.44483700383063823`, 0.]}}}, {{{
+           Complex[0.7624178530819941, 0.], 
+           Complex[0., 0.6470849612337576]}, {
+           Complex[0., 0.6470849612337576], 
+           Complex[0.7624178530819941, 0.]}}, {{
+           Complex[0.45971693594808555`, 0.], 
+           Complex[0., -0.541654378460284]}, {
+           Complex[0., -0.541654378460284], 
+           Complex[0.45971693594808555`, 0.]}}}, {{{
+           Complex[0.8063210964176565, 0.], 
+           Complex[0., 0.5914779907126907]}, {
+           Complex[0., 0.5914779907126907], 
+           Complex[0.8063210964176565, 0.]}}, {{
+           Complex[0.45794663089265575`, 0.], 
+           Complex[0., -0.6242870210510534]}, {
+           Complex[0., -0.6242870210510534], 
+           Complex[0.45794663089265575`, 0.]}}}, {{{
+           Complex[0.8492293117808389, 0.], 
+           Complex[0., 0.5280241449654933]}, {
+           Complex[0., 0.5280241449654933], 
+           Complex[0.8492293117808389, 0.]}}, {{
+           Complex[0.4387881248660048, 0.], 
+           Complex[0., -0.7057096589641472]}, {
+           Complex[0., -0.7057096589641472], 
+           Complex[0.4387881248660048, 0.]}}}, {{{
+           Complex[0.8894772566444258, 0.], 
+           Complex[0., 0.4569793591582512]}, {
+           Complex[0., 0.4569793591582512], 
+           Complex[0.8894772566444258, 0.]}}, {{
+           Complex[0.40223488212849723`, 0.], 
+           Complex[0., -0.7829210954694626]}, {
+           Complex[0., -0.7829210954694626], 
+           Complex[0.40223488212849723`, 0.]}}}, {{{
+           Complex[0.9254383864183495, 0.], 
+           Complex[0., 0.3788980413652679]}, {
+           Complex[0., 0.3788980413652679], 
+           Complex[0.9254383864183495, 0.]}}, {{
+           Complex[0.3491183004406874, 0.], 
+           Complex[0., -0.8527029450394414]}, {
+           Complex[0., -0.8527029450394414], 
+           Complex[0.3491183004406874, 0.]}}}, {{{
+           Complex[0.9556076129709842, 0.], 
+           Complex[0., 0.2946422178266932]}, {
+           Complex[0., 0.2946422178266932], 
+           Complex[0.9556076129709842, 0.]}}, {{
+           Complex[0.28115576951930465`, 0.], 
+           Complex[0., -0.9118672563863435]}, {
+           Complex[0., -0.9118672563863435], 
+           Complex[0.28115576951930465`, 0.]}}}, {{{
+           Complex[0.9786852197035895, 0.], 
+           Complex[0., 0.20536602697560702`]}, {
+           Complex[0., 0.20536602697560702`], 
+           Complex[0.9786852197035895, 0.]}}, {{
+           Complex[0.20092504834981453`, 0.], 
+           Complex[0., -0.9575214189602154]}, {
+           Complex[0., -0.9575214189602154], 
+           Complex[0.20092504834981453`, 0.]}}}, {{{
+           Complex[0.9936545227115096, 0.], 
+           Complex[0., 0.11247521770375071`]}, {
+           Complex[0., 0.11247521770375071`], 
+           Complex[0.9936545227115096, 0.]}}, {{
+           Complex[0.11175847752384045`, 0.], 
+           Complex[0., -0.9873224636425711]}, {
+           Complex[0., -0.9873224636425711], 
+           Complex[0.11175847752384045`, 0.]}}}, {{{
+           Complex[0.9998457431299694, 0.], 
+           Complex[0., 0.017564064659142203`]}, {
+           Complex[0., 0.017564064659142203`], 
+           Complex[0.9998457431299694, 0.]}}, {{
+           Complex[0.01756136402882731, 0.], 
+           Complex[0., -0.9996914903366806]}, {
+           Complex[0., -0.9996914903366806], 
+           Complex[0.01756136402882731, 0.]}}}, {{{
+           Complex[0.9976197749986865, 0.], 
+           Complex[0., -0.06895499299574415]}, {
+           Complex[0., -0.06895499299574415], 
+           Complex[0.9976197749986865, 0.]}}, {{
+           Complex[-0.06879059713967672, 0.], 
+           Complex[0., -0.9952414331938444]}, {
+           Complex[0., -0.9952414331938444], 
+           Complex[-0.06879059713967672, 0.]}}}, {{{
+           Complex[0.9880012107268802, 0.], 
+           Complex[0., -0.15444619237528112`]}, {
+           Complex[0., -0.15444619237528112`], 
+           Complex[0.9880012107268802, 0.]}}, {{
+           Complex[-0.15257800536784208`, 0.], 
+           Complex[0., -0.9760503170167619]}, {
+           Complex[0., -0.9760503170167619], 
+           Complex[-0.15257800536784208`, 0.]}}}, {{{
+           Complex[0.9713472513241828, 0.], 
+           Complex[0., -0.23766475489747416`]}, {
+           Complex[0., -0.23766475489747416`], 
+           Complex[0.9713472513241828, 0.]}}, {{
+           Complex[-0.2307207859200262, 0.], 
+           Complex[0., -0.942966934402776]}, {
+           Complex[0., -0.942966934402776], 
+           Complex[-0.2307207859200262, 0.]}}}, {{{
+           Complex[0.9482698789641522, 0.], 
+           Complex[0., -0.3174653645149791]}, {
+           Complex[0., -0.3174653645149791], 
+           Complex[0.9482698789641522, 0.]}}, {{
+           Complex[-0.30044288905399563`, 0.], 
+           Complex[0., -0.8974237014091773]}, {
+           Complex[0., -0.8974237014091773], 
+           Complex[-0.30044288905399563`, 0.]}}}, {{{
+           Complex[0.9196033314877771, 0.], 
+           Complex[0., -0.3928482284926194]}, {
+           Complex[0., -0.3928482284926194], 
+           Complex[0.9196033314877771, 0.]}}, {{
+           Complex[-0.3594088268112688, 0.], 
+           Complex[0., -0.841326322407614]}, {
+           Complex[0., -0.841326322407614], 
+           Complex[-0.3594088268112688, 0.]}}}, {{{
+           Complex[0.8863613787329154, 0.], 
+           Complex[0., -0.46299408222680755`]}, {
+           Complex[0., -0.46299408222680755`], 
+           Complex[0.8863613787329154, 0.]}}, {{
+           Complex[-0.40582236698875485`, 0.], 
+           Complex[0., -0.7769111655432345]}, {
+           Complex[0., -0.7769111655432345], 
+           Complex[-0.40582236698875485`, 0.]}}}, {{{
+           Complex[0.8496879034291892, 0.], 
+           Complex[0., -0.5272859505953064]}, {
+           Complex[0., -0.5272859505953064], 
+           Complex[0.8496879034291892, 0.]}}, {{
+           Complex[-0.43848107287621746`, 0.], 
+           Complex[0., -0.7065844671272113]}, {
+           Complex[0., -0.7065844671272113], 
+           Complex[-0.43848107287621746`, 0.]}}}, {{{
+           Complex[0.8108047377223159, 0.], 
+           Complex[0., -0.5853167319033782]}, {
+           Complex[0., -0.5853167319033782], 
+           Complex[0.8108047377223159, 0.]}}, {{
+           Complex[-0.4567858472492135, 0.], 
+           Complex[0., -0.6327584832177972]}, {
+           Complex[0., -0.6327584832177972], 
+           Complex[-0.4567858472492135, 0.]}}}, {{{
+           Complex[0.7709604834077256, 0.], 
+           Complex[0., -0.6368829753920427]}, {
+           Complex[0., -0.6368829753920427], 
+           Complex[0.7709604834077256, 0.]}}, {{
+           Complex[-0.46070942267867326`, 0.], 
+           Complex[0., -0.5576986218300536]}, {
+           Complex[0., -0.5576986218300536], 
+           Complex[-0.46070942267867326`, 0.]}}}, {{{
+           Complex[0.7323853026386844, 0.], 
+           Complex[0., -0.6808904132709283]}, {
+           Complex[0., -0.6808904132709283], 
+           Complex[0.7323853026386844, 0.]}}, {{
+           Complex[-0.4511546920006286, 0.], 
+           Complex[0., -0.48527495460046277`]}, {
+           Complex[0., -0.48527495460046277`], 
+           Complex[-0.4511546920006286, 0.]}}}, {{{
+           Complex[0.6951456777472048, 0.], 
+           Complex[0., -0.7188688807452349]}, {
+           Complex[0., -0.7188688807452349], 
+           Complex[0.6951456777472048, 0.]}}, {{
+           Complex[-0.4292298541558907, 0.], 
+           Complex[0., -0.41506495152206374`]}, {
+           Complex[0., -0.41506495152206374`], 
+           Complex[-0.4292298541558907, 0.]}}}, {{{
+           Complex[0.6602401613644451, 0.], 
+           Complex[0., -0.7510545301472848]}, {
+           Complex[0., -0.7510545301472848], 
+           Complex[0.6602401613644451, 0.]}}, {{
+           Complex[-0.39605686401568113`, 0.], 
+           Complex[0., -0.3481673257134039]}, {
+           Complex[0., -0.3481673257134039], 
+           Complex[-0.39605686401568113`, 0.]}}}, {{{
+           Complex[0.6285632746175918, 0.], 
+           Complex[0., -0.777758436638367]}, {
+           Complex[0., -0.777758436638367], 
+           Complex[0.6285632746175918, 0.]}}, {{
+           Complex[-0.3529647866888393, 0.], 
+           Complex[0., -0.2852565673761531]}, {
+           Complex[0., -0.2852565673761531], 
+           Complex[-0.3529647866888393, 0.]}}}, {{{
+           Complex[0.6008913946515667, 0.], 
+           Complex[0., -0.7993306621583965]}, {
+           Complex[0., -0.7993306621583965], 
+           Complex[0.6008913946515667, 0.]}}, {{
+           Complex[-0.30141194090107826`, 0.], 
+           Complex[0., -0.22658437865036762`]}, {
+           Complex[0., -0.22658437865036762`], 
+           Complex[-0.30141194090107826`, 0.]}}}, {{{
+           Complex[0.5778746564103365, 0.], 
+           Complex[0., -0.8161255161032571]}, {
+           Complex[0., -0.8161255161032571], 
+           Complex[0.5778746564103365, 0.]}}, {{
+           Complex[-0.24292189772020972`, 0.], 
+           Complex[0., -0.17200590521718334`]}, {
+           Complex[0., -0.17200590521718334`], 
+           Complex[-0.24292189772020972`, 0.]}}}, {{{
+           Complex[0.5600335452584414, 0.], 
+           Complex[0., -0.828469918953287]}, {
+           Complex[0., -0.828469918953287], 
+           Complex[0.5600335452584414, 0.]}}, {{
+           Complex[-0.17903676922131692`, 0.], 
+           Complex[0., -0.12102623682895355`]}, {
+           Complex[0., -0.12102623682895355`], 
+           Complex[-0.17903676922131692`, 0.]}}}, {{{
+           Complex[0.5477586596956638, 0.], 
+           Complex[0., -0.8366363795236715]}, {
+           Complex[0., -0.8366363795236715], 
+           Complex[0.5477586596956638, 0.]}}, {{
+           Complex[-0.11128873187141815`, 0.], 
+           Complex[0., -0.07286243834817936]}, {
+           Complex[0., -0.07286243834817936], 
+           Complex[-0.11128873187141815`, 0.]}}}, {{{
+           Complex[0.5413121484213201, 0.], 
+           Complex[0., -0.8408217059917192]}, {
+           Complex[0., -0.8408217059917192], 
+           Complex[0.5413121484213201, 0.]}}, {{
+           Complex[-0.04118845092063921, 0.], 
+           Complex[0., -0.026516690401172327`]}, {
+           Complex[0., -0.026516690401172327`], 
+           Complex[-0.04118845092063921, 0.]}}}, {{{
+           Complex[0.5411280642535504, 0.], 
+           Complex[0., -0.8409401929781443]}, {
+           Complex[0., -0.8409401929781443], 
+           Complex[0.5411280642535504, 0.]}}, {{
+           Complex[0.03725142194204639, 0.], 
+           Complex[0., 0.023970539178997836`]}, {
+           Complex[0., 0.023970539178997836`], 
+           Complex[0.03725142194204639, 0.]}}}, {{{
+           Complex[0.5482349778404578, 0.], 
+           Complex[0., -0.8363243404007534]}, {
+           Complex[0., -0.8363243404007534], 
+           Complex[0.5482349778404578, 0.]}}, {{
+           Complex[0.11473967107076355`, 0.], 
+           Complex[0., 0.07521519814084925]}, {
+           Complex[0., 0.07521519814084925], 
+           Complex[0.11473967107076355`, 0.]}}}, {{{
+           Complex[0.5624502280692316, 0.], 
+           Complex[0., -0.8268311414472701]}, {
+           Complex[0., -0.8268311414472701], 
+           Complex[0.5624502280692316, 0.]}}, {{
+           Complex[0.18926096063365622`, 0.], 
+           Complex[0., 0.128744389345139]}, {
+           Complex[0., 0.128744389345139], 
+           Complex[0.18926096063365622`, 0.]}}}, {{{
+           Complex[0.5834018176599881, 0.], 
+           Complex[0., -0.8121836698934503]}, {
+           Complex[0., -0.8121836698934503], 
+           Complex[0.5834018176599881, 0.]}}, {{
+           Complex[0.25877090599319613`, 0.], 
+           Complex[0., 0.18587841941241137`]}, {
+           Complex[0., 0.18587841941241137`], 
+           Complex[0.25877090599319613`, 0.]}}}, {{{
+           Complex[0.610525487046999, 0.], 
+           Complex[0., -0.791996604068689]}, {
+           Complex[0., -0.791996604068689], 
+           Complex[0.610525487046999, 0.]}}, {{
+           Complex[0.3211949828917601, 0.], 
+           Complex[0., 0.2475991973550072]}, {
+           Complex[0., 0.2475991973550072], 
+           Complex[0.3211949828917601, 0.]}}}, {{{
+           Complex[0.6430628270909569, 0.], 
+           Complex[0., -0.7658134146799452]}, {
+           Complex[0., -0.7658134146799452], 
+           Complex[0.6430628270909569, 0.]}}, {{
+           Complex[0.3744533321380606, 0.], 
+           Complex[0., 0.31443301223989967`]}, {
+           Complex[0., 0.31443301223989967`], 
+           Complex[0.3744533321380606, 0.]}}}, {{{
+           Complex[0.6800631584231027, 0.], 
+           Complex[0., -0.7331535169446132]}, {
+           Complex[0., -0.7331535169446132], 
+           Complex[0.6800631584231027, 0.]}}, {{
+           Complex[0.41651721853140616`, 0.], 
+           Complex[0., 0.3863556669915211]}, {
+           Complex[0., 0.3863556669915211], 
+           Complex[0.41651721853140616`, 0.]}}}, {{{
+           Complex[0.7203922242451571, 0.], 
+           Complex[0., -0.6935668784355451]}, {
+           Complex[0., -0.6935668784355451], 
+           Complex[0.7203922242451571, 0.]}}, {{
+           Complex[0.44549841797322776`, 0.], 
+           Complex[0., 0.4627291290291977]}, {
+           Complex[0., 0.4627291290291977], 
+           Complex[0.44549841797322776`, 0.]}}}, {{{
+           Complex[0.7627506271622514, 0.], 
+           Complex[0., -0.6466926982211593]}, {
+           Complex[0., -0.6466926982211593], 
+           Complex[0.7627506271622514, 0.]}}, {{
+           Complex[0.45976752803399723`, 0.], 
+           Complex[0., 0.5422791583484821]}, {
+           Complex[0., 0.5422791583484821], 
+           Complex[0.45976752803399723`, 0.]}}}, {{{
+           Complex[0.8057043065588293, 0.], 
+           Complex[0., -0.5923179307373816]}, {
+           Complex[0., -0.5923179307373816], 
+           Complex[0.8057043065588293, 0.]}}, {{
+           Complex[0.4580916858792391, 0.], 
+           Complex[0., 0.6231221896297049]}, {
+           Complex[0., 0.6231221896297049], 
+           Complex[0.4580916858792391, 0.]}}}, {{{
+           Complex[0.8477282253152489, 0.], 
+           Complex[0., -0.5304307827198099]}, {
+           Complex[0., -0.5304307827198099], 
+           Complex[0.8477282253152489, 0.]}}, {{
+           Complex[0.4397771798723163, 0.], 
+           Complex[0., 0.7028467085522917]}, {
+           Complex[0., 0.7028467085522917], 
+           Complex[0.4397771798723163, 0.]}}}, {{{
+           Complex[0.887262897460368, 0.], 
+           Complex[0., -0.46126403773232805`]}, {
+           Complex[0., -0.46126403773232805`], 
+           Complex[0.887262897460368, 0.]}}, {{
+           Complex[0.4047988369719289, 0.], 
+           Complex[0., 0.778649450794805]}, {
+           Complex[0., 0.778649450794805], 
+           Complex[0.4047988369719289, 0.]}}}, {{{
+           Complex[0.9227816139476791, 0.], 
+           Complex[0., -0.38532332068379027`]}, {
+           Complex[0., -0.38532332068379027`], 
+           Complex[0.9227816139476791, 0.]}}, {{
+           Complex[0.35389670492838227`, 0.], 
+           Complex[0., 0.8475203921421796]}, {
+           Complex[0., 0.8475203921421796], 
+           Complex[0.35389670492838227`, 0.]}}}, {{{
+           Complex[0.9528644520292667, 0.], 
+           Complex[0., -0.30339630120265015`]}, {
+           Complex[0., -0.30339630120265015`], 
+           Complex[0.9528644520292667, 0.]}}, {{
+           Complex[0.2886220502069647, 0.], 
+           Complex[0., 0.9064635533339859]}, {
+           Complex[0., 0.9064635533339859], 
+           Complex[0.2886220502069647, 0.]}}}, {{{
+           Complex[0.9762736657254973, 0.], 
+           Complex[0., -0.21654035124784926`]}, {
+           Complex[0., -0.21654035124784926`], 
+           Complex[0.9762736657254973, 0.]}}, {{
+           Complex[0.21131925679582403`, 0.], 
+           Complex[0., 0.9527343052777164]}, {
+           Complex[0., 0.9527343052777164], 
+           Complex[0.21131925679582403`, 0.]}}}, {{{
+           Complex[0.992024123680075, 0.], 
+           Complex[0., -0.12604820129530112`]}, {
+           Complex[0., -0.12604820129530112`], 
+           Complex[0.992024123680075, 0.]}}, {{
+           Complex[0.12503746990191528`, 0.], 
+           Complex[0., 0.9840694207447142]}, {
+           Complex[0., 0.9840694207447142], 
+           Complex[0.12503746990191528`, 0.]}}}, {{{
+           Complex[0.9994422975170608, 0.], 
+           Complex[0., -0.033393449748800874`]}, {
+           Complex[0., -0.033393449748800874`], 
+           Complex[0.9994422975170608, 0.]}}, {{
+           Complex[0.033374825947093185`, 0.], 
+           Complex[0., 0.9988846833267288]}, {
+           Complex[0., 0.9988846833267288], 
+           Complex[0.033374825947093185`, 0.]}}}, {{{
+           Complex[0.9982080074063558, 0.], 
+           Complex[0., 0.059839942710623116`]}, {
+           Complex[0., 0.059839942710623116`], 
+           Complex[0.9982080074063558, 0.]}}, {{
+           Complex[-0.05973257274595697, 0.], 
+           Complex[0., 0.9964170639667388]}, {
+           Complex[0., 0.9964170639667388], 
+           Complex[-0.05973257274595697, 0.]}}}, {{{
+           Complex[0.9898527557993446, 0.], 
+           Complex[0., 0.14209702187059103`]}, {
+           Complex[0., 0.14209702187059103`], 
+           Complex[0.9898527557993446, 0.]}}, {{
+           Complex[-0.14064526070183622`, 0.], 
+           Complex[0., 0.9797397663351242]}, {
+           Complex[0., 0.9797397663351242], 
+           Complex[-0.14064526070183622`, 0.]}}}, {{{
+           Complex[0.9749504760391366, 0.], 
+           Complex[0., 0.22242216523352368`]}, {
+           Complex[0., 0.22242216523352368`], 
+           Complex[0.9749504760391366, 0.]}}, {{
+           Complex[-0.216754975204895, 0.], 
+           Complex[0., 0.9501092920128318]}, {
+           Complex[0., 0.9501092920128318], 
+           Complex[-0.216754975204895, 0.]}}}, {{{
+           Complex[0.9540070106188072, 0.], 
+           Complex[0., 0.29978437361726534`]}, {
+           Complex[0., 0.29978437361726534`], 
+           Complex[0.9540070106188072, 0.]}}, {{
+           Complex[-0.28555151184324623`, 0.], 
+           Complex[0., 0.9087136313047828]}, {
+           Complex[0., 0.9087136313047828], 
+           Complex[-0.28555151184324623`, 0.]}}}, {{{
+           Complex[0.9277229064631662, 0.], 
+           Complex[0., 0.37326968349608464`]}, {
+           Complex[0., 0.37326968349608464`], 
+           Complex[0.9277229064631662, 0.]}}, {{
+           Complex[-0.3448797950780152, 0.], 
+           Complex[0., 0.8571627950935619]}, {
+           Complex[0., 0.8571627950935619], 
+           Complex[-0.3448797950780152, 0.]}}}, {{{
+           Complex[0.8969600007855494, 0.], 
+           Complex[0., 0.4421117513298615]}, {
+           Complex[0., 0.4421117513298615], 
+           Complex[0.8969600007855494, 0.]}}, {{
+           Complex[-0.3930272279424701, 0.], 
+           Complex[0., 0.7973769115652719]}, {
+           Complex[0., 0.7973769115652719], 
+           Complex[-0.3930272279424701, 0.]}}}, {{{
+           Complex[0.8768108146361978, 0.], 
+           Complex[0., 0.48083556608201994`]}, {
+           Complex[0., 0.48083556608201994`], 
+           Complex[0.8768108146361978, 0.]}}, {{
+           Complex[-0.4159686262723712, 0.], 
+           Complex[0., 0.7585249837704451]}, {
+           Complex[0., 0.7585249837704451], 
+           Complex[-0.4159686262723712, 0.]}}}, {{{
+           Complex[0.8663365612275016, 0.], 
+           Complex[0., 0.49946071688722066`]}, {
+           Complex[0., 0.49946071688722066`], 
+           Complex[0.8663365612275016, 0.]}}, {{
+           Complex[-0.425714000257265, 0.], 
+           Complex[0., 0.7384196406086984]}, {
+           Complex[0., 0.7384196406086984], 
+           Complex[-0.425714000257265, 0.]}}}, {{{
+           Complex[0.8556343699778584, 0.], 
+           Complex[0., 0.517580787256333]}, {
+           Complex[0., 0.517580787256333], 
+           Complex[0.8556343699778584, 0.]}}, {{
+           Complex[-0.4342873026722894, 0.], 
+           Complex[0., 0.7179384392079036]}, {
+           Complex[0., 0.7179384392079036], 
+           Complex[-0.4342873026722894, 0.]}}}}, {Automatic}],
+      Editable->False,
+      SelectWithContents->True,
+      Selectable->False], "[", "t", "]"}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.9216662822065277`*^9, {3.9216666016314077`*^9, 3.921666709622368*^9}, 
+   3.921717668945066*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"a979255d-15ef-4c58-aa53-8b3e722e965b"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Insert", " ", "end", " ", 
+  RowBox[{"time", ":"}]}]], "Text",
+ CellChangeTimes->{{3.81961337583414*^9, 3.819613998539501*^9}, {
+   3.819614055731628*^9, 3.819614057362281*^9}, 3.9216661352777967`*^9, {
+   3.921666201972117*^9, 3.92166625185401*^9}, {3.9216663652656107`*^9, 
+   3.921666370847869*^9}, {3.92166666613675*^9, 3.9216666671230087`*^9}},
+ FontColor->GrayLevel[
+  0.5],ExpressionUUID->"43a504a8-5de1-4ca3-aeca-b2ec9ef29411"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"U", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"NDSolve", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"\[ImaginaryI]", "*", 
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"u", "[", "t", "]"}], ",", "t"}], "]"}]}], "\[Equal]", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"H", "/.", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Ez", "->", "1"}], ",", 
+               RowBox[{"\[Omega]", "->", "1"}]}], "}"}]}], ")"}], ".", 
+           RowBox[{"u", "[", "t", "]"}]}]}], ",", 
+         RowBox[{
+          RowBox[{"u", "[", "t0", "]"}], "\[Equal]", "u0"}]}], "}"}], ",", 
+       RowBox[{"u", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "t0", ",", "t1"}], "}"}]}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "1", ",", "2"}], "]"}], "]"}], "/.", 
+    RowBox[{"t", "\[Rule]", "t1"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"U", "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.921666314189682*^9, 3.921666381497617*^9}, 
+   3.921666681726158*^9, {3.9217176859928217`*^9, 3.9217176910925303`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"b16a7d75-ad08-4b68-bda8-c154e02ef1b4"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{"0.8556343699778584`", "\[VeryThinSpace]", "+", 
+       RowBox[{"0.`", " ", "\[ImaginaryI]"}]}], 
+      RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+       RowBox[{"0.517580787256333`", " ", "\[ImaginaryI]"}]}]},
+     {
+      RowBox[{"0.`", "\[VeryThinSpace]", "+", 
+       RowBox[{"0.517580787256333`", " ", "\[ImaginaryI]"}]}], 
+      RowBox[{"0.8556343699778584`", "\[VeryThinSpace]", "+", 
+       RowBox[{"0.`", " ", "\[ImaginaryI]"}]}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.921666348697611*^9, 3.92166638196357*^9}, {
+  3.9216666068948298`*^9, 3.9216667115054913`*^9}, {3.921717671346238*^9, 
+  3.9217176919844418`*^9}},
+ CellLabel->
+  "Out[11]//MatrixForm=",ExpressionUUID->"911d610b-b602-4c82-9ad8-\
+f307e72ac1d6"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"List", " ", "for", " ", "different", " ", "time", " ", 
+  RowBox[{"points", ":"}]}]], "Text",
+ CellChangeTimes->{{3.81961337583414*^9, 3.819613998539501*^9}, {
+   3.819614055731628*^9, 3.819614057362281*^9}, 3.9216661352777967`*^9, {
+   3.921666201972117*^9, 3.92166625185401*^9}, {3.9216663652656107`*^9, 
+   3.921666370847869*^9}, {3.92166666613675*^9, 3.9216666671230087`*^9}, {
+   3.921666737914036*^9, 3.921666750233086*^9}},
+ FontColor->GrayLevel[
+  0.5],ExpressionUUID->"76af06f3-f3a6-45be-987e-d3623675f73e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"idlefidelitylist", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "0"}], ",", 
+   RowBox[{"i", "<", "100"}], ",", 
+   RowBox[{
+    RowBox[{"i", "++"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"u0", "=", 
+     RowBox[{"IdentityMatrix", "@", 
+      RowBox[{"Length", "@", "H"}]}]}], ";", "\n", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"t0", ",", "t1"}], "}"}], "=", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"0.1", "*", "i"}]}], "}"}]}], ";", "\n", 
+    RowBox[{"U", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"NDSolve", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"\[ImaginaryI]", "*", 
+             RowBox[{"D", "[", 
+              RowBox[{
+               RowBox[{"u", "[", "t", "]"}], ",", "t"}], "]"}]}], "\[Equal]", 
+            
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"H", "/.", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Ez", "->", "1"}], ",", 
+                 RowBox[{"\[Omega]", "->", "1"}]}], "}"}]}], ")"}], ".", 
+             RowBox[{"u", "[", "t", "]"}]}]}], ",", 
+           RowBox[{
+            RowBox[{"u", "[", "t0", "]"}], "\[Equal]", "u0"}]}], "}"}], ",", 
+         RowBox[{"u", "[", "t", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "t0", ",", "t1"}], "}"}]}], "]"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ",", "1", ",", "2"}], "]"}], "]"}], "/.", 
+      RowBox[{"t", "\[Rule]", "t1"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"idlefidelitylist", ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"2", "+", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{"Tr", "[", 
+            RowBox[{
+             RowBox[{"PauliMatrix", "[", "0", "]"}], ".", "U"}], "]"}], "]"}],
+           "^", "2"}]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"3", "*", "2"}], ")"}]}]}], "]"}], ";"}]}], 
+  "\[IndentingNewLine]", "]"}]}], "Input",
+ CellChangeTimes->{{3.921666440872408*^9, 3.9216665874605494`*^9}, {
+  3.921666694778963*^9, 3.921666723844575*^9}},
+ CellLabel->
+  "In[212]:=",ExpressionUUID->"68595ba0-f769-4565-b591-7fde4d666399"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListLinePlot", "[", "idlefidelitylist", "]"}]], "Input",
+ CellChangeTimes->{{3.921666556889901*^9, 3.921666565426385*^9}},
+ CellLabel->
+  "In[214]:=",ExpressionUUID->"a002c147-a748-49a1-aa4a-c01d09d68314"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, 
+   InterpretationBox[{
+     TagBox[{{}, {}, 
+       TagBox[
+        {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+          NCache[
+           Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[2], 
+         LineBox[CompressedData["
+1:eJw1lAtMU2cYhmFbhkFh3AasilyUclNTQTrLZX2hIAgIpXCAybJVlA0UNTJx
+sHE5iKLRGSaUMAnOoKIggaEycESgbGudIBtZEATdRjcoCjhE5RKiZS77vyYn
+zdP//P2+733+c5xT9itSXzMyMtr16vrv+//PE2mNtFLbeXtayn5AQ55pv8yL
+eBmuva1e0oj+YWyB2irJobtTU4xtkPK5IN+QNcnYHqG16Y6eo48Yr8L3Clmx
+R/RDxk4o/S6l6fYtPWMXGPv0utQoxxivhb291LxjzShjIa55eL7U2v3N2B2X
+3mmYeCj9i7EnuLufGfdW6RivQ25RcNf19cQbYJ578Le9MyOMRdj1xFhjN068
+EdyYfv6oOd3vDUl357HENGIfuO1r/7FxlngT5MXyeVUr1ffFouS5wa6R+hOD
+t3jp4T9I/b+LjPKbQ7r1NO9m3DmVKdLXjjOWIPVqX065H+Xlh8PytIqf+yYY
++8N9+zpdO0d5B+CiZWVB29XHjAPRFKfLjOklP+9hd37Eytky8idFenqkvmSO
+GEiy83BIf8yYB+RLBSckObQeBE8Pka/FBfZ/fBCq819cFnxB9YLh7bKz6Utb
+1g//iiv6VW+don5lKD+iE2+YY755GRSZfVZun9C8Ici9Oe63Z4b55kPg/uvC
+R/pqyisUVh2CmdcLWZ58KDqLCgfDyijvLehoM7OVDTMf/BYckeWk1HPkJwzZ
+x8QWqW/QehgSLratTh4j3+F41Gcxb7bAmA/H5lH5dE8A7d+K6GeWDiXNtH8r
+rgy0OhYpqX4ElgmHCgKDqL8I+OX+EtDOUf+RCO9UqhSVNF8kRo7uOFllQvNH
+QSR0Mu0/TflE4canHRln3Sm/bei2WyEqaWXPE78NTTYHzA67Uf7RUHHVrmeU
+5CcafqfrkjVR5C8GDV35wzuGyW8MJAPZPx000LocGpPOTGELY8hR8/zA8bUm
+dL8c3Tnc4AMDq6eW42lFVGNrE52/WJz/YJOw3of1h1jcs2/MqjzHzi8fixvW
+4gtPTdl86ljYW+Ls/eN0/hUQfJth8HJn+UCBuSzOe80zylMBldLYumea5a1W
+QDdft6/XifKPg39z/jdFxcwP4lDrrAhb7kS+4vBxqMt18RTzq46D826tMGCC
+/MejZ7JRZi2g/fGoMqSdy86l/fFwTefTKqyofjwWFs5YKX+n+hw2juyMrHrA
++gWHP1oWtffNyDeHUtXQ3pQ9bF41B21k3cqoSfKfgMX9J1scC1heSIDn0i3f
+N23IdwJW+d+p05axvNUJCO/XaYr15D8RtZUzK1xnmX8kInB1V+G9evKXCMuI
+FuNLLxirE/G1xmtYrCP/ScgLWbzSnEz+k/Chumc67xCdpyR8ZdPQ/EMw+U+C
+y/JSgXyA3u/vw8F2+59z4RPSfwHD8erE
+          "]]},
+        Annotation[#, "Charting`Private`Tag#1"]& ]},
+      {"WolframDynamicHighlight", <|
+       "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>}], 
+     StyleBox[
+      DynamicBox[(Charting`HighlightActionBox["DynamicHighlight", {}, 
+        Slot["HighlightElements"], 
+        Slot["LayoutOptions"], 
+        Slot["Meta"], 
+        Charting`HighlightActionFunction["DynamicHighlight", {{{}, {}, 
+           Annotation[{
+             Hue[0.67, 0.6, 0.6], 
+             Directive[
+              PointSize[
+               Rational[1, 72]], 
+              RGBColor[0.368417, 0.506779, 0.709798], 
+              AbsoluteThickness[2]], 
+             Line[CompressedData["
+1:eJw1lAtMU2cYhmFbhkFh3AasilyUclNTQTrLZX2hIAgIpXCAybJVlA0UNTJx
+sHE5iKLRGSaUMAnOoKIggaEycESgbGudIBtZEATdRjcoCjhE5RKiZS77vyYn
+zdP//P2+733+c5xT9itSXzMyMtr16vrv+//PE2mNtFLbeXtayn5AQ55pv8yL
+eBmuva1e0oj+YWyB2irJobtTU4xtkPK5IN+QNcnYHqG16Y6eo48Yr8L3Clmx
+R/RDxk4o/S6l6fYtPWMXGPv0utQoxxivhb291LxjzShjIa55eL7U2v3N2B2X
+3mmYeCj9i7EnuLufGfdW6RivQ25RcNf19cQbYJ578Le9MyOMRdj1xFhjN068
+EdyYfv6oOd3vDUl357HENGIfuO1r/7FxlngT5MXyeVUr1ffFouS5wa6R+hOD
+t3jp4T9I/b+LjPKbQ7r1NO9m3DmVKdLXjjOWIPVqX065H+Xlh8PytIqf+yYY
++8N9+zpdO0d5B+CiZWVB29XHjAPRFKfLjOklP+9hd37Eytky8idFenqkvmSO
+GEiy83BIf8yYB+RLBSckObQeBE8Pka/FBfZ/fBCq819cFnxB9YLh7bKz6Utb
+1g//iiv6VW+don5lKD+iE2+YY755GRSZfVZun9C8Ici9Oe63Z4b55kPg/uvC
+R/pqyisUVh2CmdcLWZ58KDqLCgfDyijvLehoM7OVDTMf/BYckeWk1HPkJwzZ
+x8QWqW/QehgSLratTh4j3+F41Gcxb7bAmA/H5lH5dE8A7d+K6GeWDiXNtH8r
+rgy0OhYpqX4ElgmHCgKDqL8I+OX+EtDOUf+RCO9UqhSVNF8kRo7uOFllQvNH
+QSR0Mu0/TflE4canHRln3Sm/bei2WyEqaWXPE78NTTYHzA67Uf7RUHHVrmeU
+5CcafqfrkjVR5C8GDV35wzuGyW8MJAPZPx000LocGpPOTGELY8hR8/zA8bUm
+dL8c3Tnc4AMDq6eW42lFVGNrE52/WJz/YJOw3of1h1jcs2/MqjzHzi8fixvW
+4gtPTdl86ljYW+Ls/eN0/hUQfJth8HJn+UCBuSzOe80zylMBldLYumea5a1W
+QDdft6/XifKPg39z/jdFxcwP4lDrrAhb7kS+4vBxqMt18RTzq46D826tMGCC
+/MejZ7JRZi2g/fGoMqSdy86l/fFwTefTKqyofjwWFs5YKX+n+hw2juyMrHrA
++gWHP1oWtffNyDeHUtXQ3pQ9bF41B21k3cqoSfKfgMX9J1scC1heSIDn0i3f
+N23IdwJW+d+p05axvNUJCO/XaYr15D8RtZUzK1xnmX8kInB1V+G9evKXCMuI
+FuNLLxirE/G1xmtYrCP/ScgLWbzSnEz+k/Chumc67xCdpyR8ZdPQ/EMw+U+C
+y/JSgXyA3u/vw8F2+59z4RPSfwHD8erE
+              "]]}, "Charting`Private`Tag#1"]}}, <|
+         "HighlightElements" -> <|
+           "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+          "LayoutOptions" -> <|
+           "PanelPlotLayout" -> <||>, 
+            "PlotRange" -> {{0., 100.}, {0.5017856627889314, 
+             0.9998115384430043}}, 
+            "Frame" -> {{False, False}, {False, False}}, 
+            "AxesOrigin" -> {0., 0.5017856627889314}, 
+            "ImageSize" -> {360, 360/GoldenRatio}, "Axes" -> {True, True}, 
+            "LabelStyle" -> {}, "AspectRatio" -> GoldenRatio^(-1), 
+            "DefaultStyle" -> {
+              Directive[
+               PointSize[
+                Rational[1, 72]], 
+               RGBColor[0.368417, 0.506779, 0.709798], 
+               AbsoluteThickness[2]]}, 
+            "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+                Identity[
+                 Part[#, 1]], 
+                Identity[
+                 Part[#, 2]]}& ), 
+              "ScalingFunctions" -> {{Identity, Identity}, {
+                Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> 
+            False|>, 
+          "Meta" -> <|
+           "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+            ListLinePlot, "GroupHighlight" -> False|>|>]]& )[<|
+        "HighlightElements" -> <|
+          "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+         "LayoutOptions" -> <|
+          "PanelPlotLayout" -> <||>, 
+           "PlotRange" -> {{0., 100.}, {0.5017856627889314, 
+            0.9998115384430043}}, "Frame" -> {{False, False}, {False, False}},
+            "AxesOrigin" -> {0., 0.5017856627889314}, 
+           "ImageSize" -> {360, 360/GoldenRatio}, "Axes" -> {True, True}, 
+           "LabelStyle" -> {}, "AspectRatio" -> GoldenRatio^(-1), 
+           "DefaultStyle" -> {
+             Directive[
+              PointSize[
+               Rational[1, 72]], 
+              RGBColor[0.368417, 0.506779, 0.709798], 
+              AbsoluteThickness[2]]}, 
+           "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+               Identity[
+                Part[#, 1]], 
+               Identity[
+                Part[#, 2]]}& ), 
+             "ScalingFunctions" -> {{Identity, Identity}, {
+               Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> 
+           False|>, 
+         "Meta" -> <|
+          "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+           ListLinePlot, "GroupHighlight" -> False|>|>],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}],
+      Selectable->False]},
+    Annotation[{{{}, {}, 
+       Annotation[{
+         Hue[0.67, 0.6, 0.6], 
+         Directive[
+          PointSize[
+           Rational[1, 72]], 
+          RGBColor[0.368417, 0.506779, 0.709798], 
+          AbsoluteThickness[2]], 
+         Line[CompressedData["
+1:eJw1lAtMU2cYhmFbhkFh3AasilyUclNTQTrLZX2hIAgIpXCAybJVlA0UNTJx
+sHE5iKLRGSaUMAnOoKIggaEycESgbGudIBtZEATdRjcoCjhE5RKiZS77vyYn
+zdP//P2+733+c5xT9itSXzMyMtr16vrv+//PE2mNtFLbeXtayn5AQ55pv8yL
+eBmuva1e0oj+YWyB2irJobtTU4xtkPK5IN+QNcnYHqG16Y6eo48Yr8L3Clmx
+R/RDxk4o/S6l6fYtPWMXGPv0utQoxxivhb291LxjzShjIa55eL7U2v3N2B2X
+3mmYeCj9i7EnuLufGfdW6RivQ25RcNf19cQbYJ578Le9MyOMRdj1xFhjN068
+EdyYfv6oOd3vDUl357HENGIfuO1r/7FxlngT5MXyeVUr1ffFouS5wa6R+hOD
+t3jp4T9I/b+LjPKbQ7r1NO9m3DmVKdLXjjOWIPVqX065H+Xlh8PytIqf+yYY
++8N9+zpdO0d5B+CiZWVB29XHjAPRFKfLjOklP+9hd37Eytky8idFenqkvmSO
+GEiy83BIf8yYB+RLBSckObQeBE8Pka/FBfZ/fBCq819cFnxB9YLh7bKz6Utb
+1g//iiv6VW+don5lKD+iE2+YY755GRSZfVZun9C8Ici9Oe63Z4b55kPg/uvC
+R/pqyisUVh2CmdcLWZ58KDqLCgfDyijvLehoM7OVDTMf/BYckeWk1HPkJwzZ
+x8QWqW/QehgSLratTh4j3+F41Gcxb7bAmA/H5lH5dE8A7d+K6GeWDiXNtH8r
+rgy0OhYpqX4ElgmHCgKDqL8I+OX+EtDOUf+RCO9UqhSVNF8kRo7uOFllQvNH
+QSR0Mu0/TflE4canHRln3Sm/bei2WyEqaWXPE78NTTYHzA67Uf7RUHHVrmeU
+5CcafqfrkjVR5C8GDV35wzuGyW8MJAPZPx000LocGpPOTGELY8hR8/zA8bUm
+dL8c3Tnc4AMDq6eW42lFVGNrE52/WJz/YJOw3of1h1jcs2/MqjzHzi8fixvW
+4gtPTdl86ljYW+Ls/eN0/hUQfJth8HJn+UCBuSzOe80zylMBldLYumea5a1W
+QDdft6/XifKPg39z/jdFxcwP4lDrrAhb7kS+4vBxqMt18RTzq46D826tMGCC
+/MejZ7JRZi2g/fGoMqSdy86l/fFwTefTKqyofjwWFs5YKX+n+hw2juyMrHrA
++gWHP1oWtffNyDeHUtXQ3pQ9bF41B21k3cqoSfKfgMX9J1scC1heSIDn0i3f
+N23IdwJW+d+p05axvNUJCO/XaYr15D8RtZUzK1xnmX8kInB1V+G9evKXCMuI
+FuNLLxirE/G1xmtYrCP/ScgLWbzSnEz+k/Chumc67xCdpyR8ZdPQ/EMw+U+C
+y/JSgXyA3u/vw8F2+59z4RPSfwHD8erE
+          "]]}, "Charting`Private`Tag#1"]}}, <|
+     "HighlightElements" -> <|
+       "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+      "LayoutOptions" -> <|
+       "PanelPlotLayout" -> <||>, 
+        "PlotRange" -> {{0., 100.}, {0.5017856627889314, 0.9998115384430043}},
+         "Frame" -> {{False, False}, {False, False}}, 
+        "AxesOrigin" -> {0., 0.5017856627889314}, 
+        "ImageSize" -> {360, 360/GoldenRatio}, "Axes" -> {True, True}, 
+        "LabelStyle" -> {}, "AspectRatio" -> GoldenRatio^(-1), "DefaultStyle" -> {
+          Directive[
+           PointSize[
+            Rational[1, 72]], 
+           RGBColor[0.368417, 0.506779, 0.709798], 
+           AbsoluteThickness[2]]}, 
+        "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+            Identity[
+             Part[#, 1]], 
+            Identity[
+             Part[#, 2]]}& ), 
+          "ScalingFunctions" -> {{Identity, Identity}, {
+            Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> False|>, 
+      "Meta" -> <|
+       "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+        ListLinePlot, "GroupHighlight" -> False|>|>, 
+     "DynamicHighlight"]], {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0., 0.5017856627889314},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "AxisPadding" -> Scaled[0.02], "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "DefaultPlotStyle" -> {
+      Directive[
+       RGBColor[0.368417, 0.506779, 0.709798], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.880722, 0.611041, 0.142051], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.560181, 0.691569, 0.194885], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.922526, 0.385626, 0.209179], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.528488, 0.470624, 0.701351], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.772079, 0.431554, 0.102387], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.363898, 0.618501, 0.782349], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[1, 0.75, 0], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.647624, 0.37816, 0.614037], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.571589, 0.586483, 0.], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.915, 0.3325, 0.2125], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.736782672705901, 0.358, 0.5030266573755369], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], 
+       AbsoluteThickness[2]]}, "DomainPadding" -> Scaled[0.02], 
+    "RangePadding" -> Scaled[0.05], "OptimizePlotMarkers" -> True, 
+    "IncludeHighlighting" -> "CurrentSet", "HighlightStyle" -> Automatic, 
+    "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0., 100.}, {0.5017856627889314, 0.9998115384430043}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.921666565992214*^9, 3.921666589301343*^9}, {
+  3.921666697682363*^9, 3.921666726280751*^9}},
+ CellLabel->
+  "Out[214]=",ExpressionUUID->"fd3c98a6-bc35-44cc-b1fe-a50766a538a2"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Floquet Magnus Expansion", "Subtitle"]], "Section",
+ CellChangeTimes->{{3.819613298665439*^9, 
+  3.819613311454607*^9}},ExpressionUUID->"0cc1d7ad-2d3d-488c-9bc1-\
+5c18adc38ad9"],
+
+Cell[BoxData[{
+ RowBox[{"For", " ", "periodic", " ", "Hamiltonian", " ", "H", " ", "with", 
+  " ", "period", " ", "T", " ", "the", " ", "time", " ", "evolution", " ", 
+  "is", " ", "given", " ", "by"}], "\[IndentingNewLine]", 
+ RowBox[{"U", "=", 
+  RowBox[{"Exp", 
+   RowBox[{"(", " ", 
+    RowBox[{
+     UnderscriptBox["\[Sum]", "n"], 
+     RowBox[{
+      SubscriptBox["\[CapitalLambda]", "n"], 
+      RowBox[{"(", "t", ")"}]}]}], ")"}], "Exp", 
+   RowBox[{"(", 
+    RowBox[{
+     UnderscriptBox["\[Sum]", "n"], 
+     RowBox[{
+      SubscriptBox["F", "n"], "t"}]}], ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"First", " ", "order", " ", "corrections", " ", 
+  "are"}], "\[IndentingNewLine]", 
+ RowBox[{
+  SubscriptBox["F", "1"], "=", 
+  RowBox[{
+   SuperscriptBox[
+    SubscriptBox["\[Integral]", "0"], "T"], 
+   RowBox[{
+    RowBox[{"-", "\[ImaginaryI]H"}], 
+    RowBox[{"(", "\[Tau]", ")"}], 
+    RowBox[{"\[DifferentialD]", "\[Tau]"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[CapitalLambda]", "1"], 
+   RowBox[{"(", "t", ")"}]}], "=", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     SubscriptBox["\[Integral]", "0"], "t"], 
+    RowBox[{
+     RowBox[{"-", "\[ImaginaryI]H"}], 
+     RowBox[{"(", "\[Tau]", ")"}], 
+     RowBox[{"\[DifferentialD]", "\[Tau]"}]}]}], " ", "-", " ", 
+   RowBox[{
+    SubscriptBox["F", "1"], "t"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  SubscriptBox["F", "2"], "=", 
+  RowBox[{
+   FormBox[
+    FractionBox["1", "2"],
+    TraditionalForm], 
+   RowBox[{
+    SuperscriptBox[
+     SubscriptBox["\[Integral]", "0"], "T"], 
+    RowBox[{
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "\[ImaginaryI]H"}], 
+         RowBox[{"(", "\[Tau]", ")"}]}], "+", 
+        SubscriptBox["F", "1"]}], ",", 
+       RowBox[{
+        SubscriptBox["\[CapitalLambda]", "1"], 
+        RowBox[{"(", "\[Tau]", ")"}]}]}], "]"}], 
+     RowBox[{"\[DifferentialD]", "\[Tau]"}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[CapitalLambda]", "2"], 
+   RowBox[{"(", "t", ")"}]}], "=", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     SubscriptBox["\[Integral]", "0"], "t"], 
+    RowBox[{
+     RowBox[{"-", "\[ImaginaryI]H"}], 
+     RowBox[{"(", "\[Tau]", ")"}], 
+     RowBox[{"\[DifferentialD]", "\[Tau]"}]}]}], " ", "-", " ", 
+   RowBox[{
+    SubscriptBox["F", "1"], "t"}]}]}]}], "Text",
+ CellChangeTimes->{{3.81961337583414*^9, 3.819613998539501*^9}, {
+  3.819614055731628*^9, 3.819614057362281*^9}},
+ FontColor->GrayLevel[
+  0.5],ExpressionUUID->"d9a130aa-2925-471b-a62c-e71d39cab0ea"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"F1", "[", 
+    RowBox[{"H_", ",", "T_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"1", "/", "T"}], "*", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "\[ImaginaryI]"}], "*", "H"}], "/.", 
+       RowBox[{"t", "->", "\[Tau]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\[Tau]", ",", "0", ",", "T"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalLambda]1", "[", 
+    RowBox[{"H_", ",", "T_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "\[ImaginaryI]"}], "*", "H"}], "/.", 
+       RowBox[{"t", "->", "\[Tau]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\[Tau]", ",", "0", ",", "t"}], "}"}]}], "]"}], "-", 
+    RowBox[{
+     RowBox[{"F1", "[", 
+      RowBox[{"H", ",", "T"}], "]"}], "*", "t"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"F2", "[", 
+    RowBox[{"H_", ",", "T_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"1", "/", 
+     RowBox[{"(", 
+      RowBox[{"2", "*", "T"}], ")"}]}], "*", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "\[ImaginaryI]"}], "*", "H"}], "+", 
+           RowBox[{"F1", "[", 
+            RowBox[{"H", ",", "T"}], "]"}]}], ")"}], ".", 
+         RowBox[{"\[CapitalLambda]1", "[", 
+          RowBox[{"H", ",", "T"}], "]"}]}], "-", 
+        RowBox[{
+         RowBox[{"\[CapitalLambda]1", "[", 
+          RowBox[{"H", ",", "T"}], "]"}], ".", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "\[ImaginaryI]"}], "*", "H"}], "+", 
+           RowBox[{"F1", "[", 
+            RowBox[{"H", ",", "T"}], "]"}]}], ")"}]}]}], "/.", 
+       RowBox[{"t", "->", "\[Tau]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\[Tau]", ",", "0", ",", "T"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[CapitalLambda]2", "[", 
+     RowBox[{"H_", ",", "T_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"(", "2", ")"}]}], "*", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "\[ImaginaryI]"}], "*", "H"}], "+", 
+             RowBox[{"F1", "[", 
+              RowBox[{"H", ",", "T"}], "]"}]}], ")"}], ".", 
+           RowBox[{"\[CapitalLambda]1", "[", 
+            RowBox[{"H", ",", "T"}], "]"}]}], "-", 
+          RowBox[{
+           RowBox[{"\[CapitalLambda]1", "[", 
+            RowBox[{"H", ",", "T"}], "]"}], ".", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "\[ImaginaryI]"}], "*", "H"}], "+", 
+             RowBox[{"F1", "[", 
+              RowBox[{"H", ",", "T"}], "]"}]}], ")"}]}]}], "/.", 
+         RowBox[{"t", "->", "\[Tau]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"\[Tau]", ",", "0", ",", "t"}], "}"}]}], "]"}]}], "-", 
+     RowBox[{
+      RowBox[{"F2", "[", 
+       RowBox[{"H", ",", "T"}], "]"}], "*", "t"}]}]}], ";"}]}]}], "Input",
+ CellChangeTimes->{{3.819614084285298*^9, 3.8196141163379498`*^9}, {
+  3.819614161576796*^9, 3.819614197373428*^9}, {3.81961423583524*^9, 
+  3.819614240599183*^9}, {3.819614276866457*^9, 3.819614350277149*^9}, {
+  3.819614430279778*^9, 3.819614448781638*^9}, {3.8196145027901907`*^9, 
+  3.81961450326815*^9}, {3.819614551053011*^9, 3.8196146056053333`*^9}, {
+  3.819614677949696*^9, 3.819614856083506*^9}},
+ CellLabel->
+  "In[163]:=",ExpressionUUID->"ebfa6abb-4a13-4eec-9e29-9b71b4147af6"]
+}, Open  ]]
+},
+WindowSize->{1276, 662},
+WindowMargins->{{0, Automatic}, {Automatic, 352}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"13.1 for Mac OS X x86 (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"eb964044-5402-4994-bf6a-ae966bdb967b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 269, 5, 78, "Section",ExpressionUUID->"c1f985f2-96a6-42d6-833d-81721ee28e9e"],
+Cell[852, 29, 1148, 31, 97, "Text",ExpressionUUID->"7ee116b7-01f3-4a73-9904-d8d5c728236d"],
+Cell[CellGroupData[{
+Cell[2025, 64, 517, 12, 64, "Input",ExpressionUUID->"99f11d72-cd88-4d8c-9fe5-f5732bc1ff61"],
+Cell[2545, 78, 885, 26, 81, "Output",ExpressionUUID->"59d8998b-e596-42d5-bc5c-a0e0bd6b0354"]
+}, Open  ]],
+Cell[3445, 107, 619, 10, 43, "Text",ExpressionUUID->"cf70912c-09d6-4aef-ba0d-223389c8f43c"],
+Cell[CellGroupData[{
+Cell[4089, 121, 1339, 37, 90, "Input",ExpressionUUID->"664c7c45-f5b2-4db6-a471-0f0cba085b60"],
+Cell[5431, 160, 62981, 1310, 77, "Output",ExpressionUUID->"a979255d-15ef-4c58-aa53-8b3e722e965b"]
+}, Open  ]],
+Cell[68427, 1473, 459, 8, 43, "Text",ExpressionUUID->"43a504a8-5de1-4ca3-aeca-b2ec9ef29411"],
+Cell[CellGroupData[{
+Cell[68911, 1485, 1282, 33, 64, "Input",ExpressionUUID->"b16a7d75-ad08-4b68-bda8-c154e02ef1b4"],
+Cell[70196, 1520, 1173, 29, 79, "Output",ExpressionUUID->"911d610b-b602-4c82-9ad8-f307e72ac1d6"]
+}, Open  ]],
+Cell[71384, 1552, 540, 9, 43, "Text",ExpressionUUID->"76af06f3-f3a6-45be-987e-d3623675f73e"],
+Cell[71927, 1563, 2309, 65, 194, "Input",ExpressionUUID->"68595ba0-f769-4565-b591-7fde4d666399"],
+Cell[CellGroupData[{
+Cell[74261, 1632, 229, 4, 37, "Input",ExpressionUUID->"a002c147-a748-49a1-aa4a-c01d09d68314"],
+Cell[74493, 1638, 12753, 280, 297, "Output",ExpressionUUID->"fd3c98a6-bc35-44cc-b1fe-a50766a538a2"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[87295, 1924, 201, 3, 78, "Section",ExpressionUUID->"0cc1d7ad-2d3d-488c-9bc1-5c18adc38ad9"],
+Cell[87499, 1929, 2584, 80, 374, "Text",ExpressionUUID->"d9a130aa-2925-471b-a62c-e71d39cab0ea"],
+Cell[90086, 2011, 3785, 111, 116, "Input",ExpressionUUID->"ebfa6abb-4a13-4eec-9e29-9b71b4147af6"]
+}, Open  ]]
+}
+]
+*)
+

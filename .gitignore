@@ -1,3 +1,6 @@
+# no pdf sync in this folder
+*.pdf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
